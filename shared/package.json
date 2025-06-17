@@ -1,0 +1,20 @@
+{
+  "name": "@calendash/shared",
+  "version": "1.0.0",
+  "description": "Shared utilities for Calendash.",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "packageManager": "pnpm@10.12.1",
+	"engines": {
+		"node": ">=22.15.0",
+		"pnpm": ">=10.10.0"
+	},
+  "author": {
+		"email": "ruben.omh@proton.me",
+		"name": "rocmaz"
+	},
+  "license": "MIT",
+  "private": true
+}
