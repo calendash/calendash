@@ -1,12 +1,28 @@
 {
   "name": "@calendash/core",
   "version": "0.0.0",
-  "description": "Core library for Calendash. Provides reusable classes for customizable, framework-agnostic date/time UI integration in JavaScript applications.",
+  "description": "Framework-agnostic JavaScript library that provides classes for customizable date and time components.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+		"time",
+		"date",
+		"calendar",
+		"time-picker",
+		"datepicker",
+		"datetime",
+		"date-picker",
+		"timepicker",
+		"date-time-picker",
+		"scheduler",
+		"javascript",
+		"typescript",
+  	"component",
+  	"vanilla-js",
+  	"customizable"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/calendash/calendash.git",
