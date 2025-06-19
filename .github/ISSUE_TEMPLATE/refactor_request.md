@@ -1,5 +1,5 @@
 ---
-name: Refactor / Code Cleanup
+name: 🧹 Refactor / Code Cleanup
 about: Propose code restructuring, simplification, or cleanup without changing existing behavior
 title: "[Refactor]: Clear and descriptive title"
 labels: [refactor]
