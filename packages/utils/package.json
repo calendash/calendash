@@ -2,6 +2,12 @@
   "name": "@calendash/utils",
   "version": "0.0.0",
   "description": "Utility functions for Calendash's date/time libraries.",
+	"sideEffects": false,
+  "packageManager": "pnpm@10.12.1",
+	"engines": {
+		"node": ">=22.15.0",
+		"pnpm": ">=10.10.0"
+	},
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,11 +24,6 @@
 	"homepage": "https://github.com/calendash/calendash/packages/utils#readme",
 	"publishConfig": {
 		"access": "public"
-	},
-  "packageManager": "pnpm@10.12.1",
-	"engines": {
-		"node": ">=22.15.0",
-		"pnpm": ">=10.10.0"
 	},
   "author": {
 		"email": "ruben.omh@proton.me",
