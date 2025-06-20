@@ -1,0 +1,11 @@
+{
+  "extends": "@calendash/shared/tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "out-tsc",
+		"types": ["@calendash/shared/env"]
+  },
+  "include": ["src"],
+  "exclude": [
+    "src/**/__tests__/**"
+  ]
+}
