@@ -2,11 +2,18 @@
   "name": "@calendash/src",
   "version": "1.0.0",
   "description": "Calendash monorepo",
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=22.15.0",
+    "pnpm": ">=10.12.1"
+  },
   "scripts": {
+    "build": "nx run-many --target build",
+    "test": "nx run-many --target test",
+    "lint": "nx run-many --target lint",
     "prepare": "husky"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
     "@babel/preset-env": "^7.27.2",
     "@babel/preset-typescript": "^7.27.1",
     "@commitlint/cli": "^19.8.1",
@@ -23,6 +30,7 @@
     "@types/jest": "^30.0.0",
     "babel-plugin-annotate-pure-calls": "^0.5.0",
     "eslint": "^9.29.0",
+    "glob": "^10.4.5",
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "jest": "^30.0.0",
@@ -42,14 +50,27 @@
   },
   "pnpm": {
     "overrides": {
-      "glob": "^10.3.0",
+      "glob": "^10.4.5",
       "inflight": "npm:@empty:1.0.0"
     }
   },
-  "packageManager": "pnpm@10.12.1",
-  "engines": {
-    "node": ">=22.15.0",
-    "pnpm": ">=10.12.1"
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "shared/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "apps/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "scripts/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "author": {
     "email": "ruben.omh@proton.me",
