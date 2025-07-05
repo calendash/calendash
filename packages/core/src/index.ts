@@ -1,1 +1,1 @@
-export function dummy() {}
+export * from './calendar';
