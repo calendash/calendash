@@ -10,7 +10,7 @@ export const config: Config = {
 	clearMocks: true,
 	passWithNoTests: false,
 	collectCoverage: true,
-	coverageProvider: 'babel',
+	coverageProvider: 'v8',
 	coverageDirectory: 'coverage',
 	testMatch: ['**/?(*.)+(spec|test).[tj]s?(x)'],
 	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
