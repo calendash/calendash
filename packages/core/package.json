@@ -1,12 +1,57 @@
 {
   "name": "@calendash/core",
   "version": "0.0.0",
-  "description": "Core library for Calendash. Provides reusable classes for customizable, framework-agnostic date/time UI integration in JavaScript applications.",
-  "main": "index.js",
+  "description": "Framework-agnostic JavaScript library that provides classes for customizable date and time components.",
+	"sideEffects": false,
+  "packageManager": "pnpm@10.12.1",
+	"engines": {
+		"node": ">=22.15.0",
+		"pnpm": ">=10.10.0"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"main": "./dist/calendash.core.umd.js",
+	"module": "./dist/calendash.core.esm.js",
+	"unpkg": "./dist/calendash.core.umd.min.js",
+	"types": "./dist/calendash.core.d.ts",
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./dist/calendash.core.d.mts",
+				"default": "./dist/calendash.core.mjs"
+			},
+			"types": "./dist/calendash.core.d.ts",
+			"module": "./dist/calendash.core.esm.js",
+			"default": "./dist/calendash.core.umd.js"
+		}
+	},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"clean": "nx run core:clean",
+		"test": "nx run core:test --verbose",
+		"lint": "nx run core:lint --verbose",
+		"build": "nx run core:build --verbose",
+		"prepack": "nx run core:prepack --verbose"
   },
-  "keywords": [],
+	"devDependencies": {
+		"@calendash/shared": "workspace:*"
+	},
+  "keywords": [
+		"time",
+		"date",
+		"calendar",
+		"time-picker",
+		"datepicker",
+		"datetime",
+		"date-picker",
+		"timepicker",
+		"date-time-picker",
+		"scheduler",
+  	"component",
+  	"customizable"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+ssh://git@github.com/calendash/calendash.git",
@@ -18,11 +63,6 @@
 	"homepage": "https://github.com/calendash/calendash/packages/core#readme",
 	"publishConfig": {
 		"access": "public"
-	},
-  "packageManager": "pnpm@10.12.1",
-	"engines": {
-		"node": ">=22.15.0",
-		"pnpm": ">=10.10.0"
 	},
   "author": {
 		"email": "ruben.omh@proton.me",

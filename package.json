@@ -2,21 +2,74 @@
   "name": "@calendash/src",
   "version": "1.0.0",
   "description": "Calendash monorepo",
-  "scripts": {
-    "prepare": "husky"
-  },
-  "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@nx/js": "^21.2.0",
-    "husky": "^9.1.7",
-    "nx": "^21.2.0",
-    "rimraf": "^6.0.1"
-  },
   "packageManager": "pnpm@10.12.1",
   "engines": {
     "node": ">=22.15.0",
     "pnpm": ">=10.12.1"
+  },
+  "scripts": {
+    "build": "nx run-many --target build",
+    "test": "nx run-many --target test",
+    "lint": "nx run-many --target lint",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-typescript": "^7.27.1",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.30.0",
+    "@microsoft/api-extractor": "^7.52.8",
+    "@nx/js": "^21.2.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-replace": "^6.0.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/jest": "^30.0.0",
+    "babel-plugin-annotate-pure-calls": "^0.5.0",
+    "eslint": "^9.30.0",
+    "glob": "^11.0.3",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "jest": "^30.0.3",
+    "jest-environment-jsdom": "^30.0.2",
+    "jest-junit": "^16.0.0",
+    "lint-staged": "^16.1.2",
+    "nx": "^21.2.1",
+    "prettier": "^3.6.2",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.44.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1",
+    "yargs": "^18.0.0",
+    "zx": "^8.6.1"
+  },
+  "pnpm": {
+    "overrides": {
+      "glob": "^10.4.5",
+      "inflight": "npm:@empty:1.0.0"
+    }
+  },
+  "lint-staged": {
+    "packages/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "shared/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "apps/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "scripts/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "author": {
     "email": "ruben.omh@proton.me",

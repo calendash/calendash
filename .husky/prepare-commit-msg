@@ -1,0 +1,17 @@
+MSG_FILE=$1
+
+# Get user name and email from Git config
+NAME=$(git config user.name)
+EMAIL=$(git config user.email)
+SIGNOFF="Signed-off-by: $NAME <$EMAIL>"
+
+# Skip if the commit message already contains the sign-off
+if grep -qF "$SIGNOFF" "$MSG_FILE"; then
+  exit 0
+fi
+
+# Add leading black line as per commitlint
+echo "" >> "$MSG_FILE"
+
+# Append sign-off at the end of the commit message
+echo "$SIGNOFF" >> "$MSG_FILE"

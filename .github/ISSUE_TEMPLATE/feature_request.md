@@ -1,10 +1,9 @@
 ---
-name: Feature Request
+name: ✨ Feature Request
 about: Suggest a new feature or improvement to the project
 title: "[Feature] Clear, descriptive title"
 labels: [enhancement]
 assignees: ''
-
 ---
 
 ## 📌 Is your feature request related to a problem?
