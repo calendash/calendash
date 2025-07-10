@@ -1,0 +1,20 @@
+export default {
+	presets: ['@babel/preset-env', '@babel/preset-typescript'],
+	assumptions: {
+		arrayLikeIsIterable: true,
+		constantReexports: true,
+		ignoreFunctionLength: true,
+		ignoreToPrimitiveHint: true,
+		mutableTemplateObject: true,
+		noClassCalls: true,
+		noDocumentAll: true,
+		objectRestNoSymbols: true,
+		privateFieldsAsProperties: false,
+		pureGetters: true,
+		setClassMethods: true,
+		setComputedProperties: true,
+		setPublicClassFields: true,
+		setSpreadProperties: true,
+		superIsCallableConstructor: true,
+	},
+};

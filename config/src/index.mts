@@ -1,0 +1,1 @@
+export { default as babelConfig } from './babel.config.mjs';
