@@ -8,8 +8,13 @@
 		"node": ">=22.15.0",
 		"pnpm": ">=10.13.1"
 	},
+  "main": "dist/src/index.mjs",
+  "module": "dist/src/index.mjs",
+  "types": "dist/src/index.d.mts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -b",
+    "clean": "rimraf dist",
+    "postinstall": "pnpm run build"
   },
   "author": {
 		"email": "ruben.omh@proton.me",
