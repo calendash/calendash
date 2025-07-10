@@ -1,0 +1,22 @@
+{
+  "name": "@calendash/monorepo",
+  "version": "1.0.0",
+  "description": "Calendash monorepo",
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=22.15.0",
+    "pnpm": ">=10.12.1"
+  },
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  },
+  "author": {
+    "email": "ruben.omh@proton.me",
+    "name": "rocmaz"
+  },
+  "license": "MIT",
+  "private": true
+}
