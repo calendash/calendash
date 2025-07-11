@@ -20,6 +20,10 @@
     "config/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
       "eslint --fix",
       "prettier --write"
+    ],
+    "packages/**/*.{js,jsx,ts,tsx,mjs,mts,cjs,cts}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   },
   "devDependencies": {
