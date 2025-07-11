@@ -50,7 +50,7 @@
 			"options": {
 				"cwd": "packages/core",
 				"commands": [
-					"build-api --tsc tsconfig.lib.json",
+					"build-api --tsc tsconfig.lib.json --aec api-extractor.json api-extractor.helpers.json api-extractor.utils.json api-extractor.mdws.json", 
 					"rollup --config"
 				],
 				"parallel": false
