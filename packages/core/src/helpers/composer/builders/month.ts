@@ -1,5 +1,6 @@
-import { isSameDay, isSameWeek, isSameMonth, type Month, type MonthCell } from '../../../common';
-import { buildGrid, isDateDisabled, type BuilderContext } from '../utils';
+import type { BuilderContext, Month, MonthCell } from '../../../types';
+import { isDateDisabled, isSameDay, isSameMonth, isSameWeek } from '../../../utils/date';
+import { createGrid } from '../../../utils/array';
 
 export function month(ctx: BuilderContext): Month {
 	const { target, today, bounds, middlewares } = ctx;
@@ -7,7 +8,7 @@ export function month(ctx: BuilderContext): Month {
 	date.setDate(1); // Set first day of month
 	const current = new Date(date.getTime());
 	current.setDate(current.getDate() - current.getDay());
-	const monthCells = buildGrid<MonthCell>(6, 7, () => {
+	const monthCells = createGrid<MonthCell>(6, 7, () => {
 		const day = {
 			time: current.getTime(),
 			day: current.getDate(),

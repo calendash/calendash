@@ -5,7 +5,7 @@ import type {
 	DIRECTION_PREV,
 	VIEW_NAVIGATION_MODE,
 	VIEWS,
-} from './constants';
+} from './utils/constants';
 
 export type ViewType = (typeof VIEWS)[number];
 export type DateType = string | number | Date;
@@ -13,6 +13,7 @@ export type Direction = typeof DIRECTION_PREV | typeof DIRECTION_NEXT;
 export type Bound = (typeof BOUNDS)[number];
 export type DateBoundsRaw = Record<Bound, DateType>;
 export type DateBounds = Record<Bound, Date>;
+export type NavigationMode = typeof DATE_NAVIGATION_MODE | typeof VIEW_NAVIGATION_MODE;
 export type ViewOffsets = {
 	[V in ViewType as `${V}s`]: number;
 };
@@ -37,6 +38,12 @@ export type Middleware = {
 	fn: (state: MiddlewareState) => MiddlewareReturn;
 };
 export type Grid<T> = T[][];
+export type BuilderContext = {
+	target: Date;
+	today: Date;
+	bounds: DateBounds;
+	middlewares: Middleware[];
+};
 export type DayCell = {
 	time: number;
 	day: number;
@@ -97,4 +104,11 @@ export type ViewData = {
 	year: Year;
 	decade: Decade;
 };
-export type NavigationMode = typeof DATE_NAVIGATION_MODE | typeof VIEW_NAVIGATION_MODE;
+export type CalendarConfig = {
+	date: DateType;
+	bounds: DateBoundsRaw;
+	view: ViewType;
+	timeZone: string;
+	skipViews: ViewType[];
+	middlewares: Middleware[];
+};

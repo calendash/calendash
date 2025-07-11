@@ -1,11 +1,13 @@
-import { getDayKey, type Middleware } from '../common';
+import type { Middleware } from '../types';
+import { ISO_DATE_REGEX } from '../utils/constants';
+import { getDayKey } from '../utils/date';
 
 /**
  * Options for the `disableWeekends` middleware.
  *
  * @property exclude - An optional list of date strings in `'YYYY-MM-DD'` format to exclude from being disabled.
  */
-type DisableWeekendsOptions = {
+export type DisableWeekendsOptions = {
 	exclude?: string[];
 };
 
@@ -21,12 +23,10 @@ type DisableWeekendsOptions = {
  *
  * middleware.fn({ date: new Date(2025, 6, 5) }).data.isDisabled; // false if excluded
  */
-const disableWeekends = (options: DisableWeekendsOptions = {}): Middleware => {
-	const ISO_DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+export const disableWeekends = (options: DisableWeekendsOptions = {}): Middleware => {
 	const exclude = Array.isArray(options.exclude)
 		? options.exclude.filter((str) => ISO_DATE_REGEX.test(str))
 		: [];
-
 	const excludedDateSet = new Set(exclude);
 
 	return {
@@ -47,5 +47,3 @@ const disableWeekends = (options: DisableWeekendsOptions = {}): Middleware => {
 		},
 	};
 };
-
-export { disableWeekends, type DisableWeekendsOptions };

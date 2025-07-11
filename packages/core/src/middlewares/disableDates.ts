@@ -1,10 +1,14 @@
-import { getDayKey, type Middleware } from '../common';
+import type { Middleware } from '../types';
+import { ISO_DATE_REGEX } from '../utils/constants';
+import { getDayKey } from '../utils/date';
 
 /**
  * Type definition for the list of disabled date strings.
  * Must follow the `'YYYY-MM-DD'` format (e.g., `'2025-07-03'`).
  */
-type DisableDatesOptions = string[];
+export type DisableDatesOptions = {
+	listOfDates?: string[];
+};
 
 /**
  * Middleware factory to disable specific dates based on a list of date strings.
@@ -21,14 +25,15 @@ type DisableDatesOptions = string[];
  * // Internally used by the calendar system
  * middleware.fn({ date: new Date(2025, 6, 3) }).data.isDisabled; // true
  */
-const disableDates = (listOfDates: DisableDatesOptions = []): Middleware => {
-	const ISO_DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
-	const filteredList = listOfDates.filter((dateStr) => ISO_DATE_REGEX.test(dateStr));
+export const disableDates = (options: DisableDatesOptions = {}): Middleware => {
+	const filteredList = Array.isArray(options.listOfDates)
+		? options.listOfDates.filter((str) => ISO_DATE_REGEX.test(str))
+		: [];
 	const disabledDateSet = new Set(filteredList);
 
 	return {
 		name: 'disableDates',
-		options: { listOfDates },
+		options,
 		fn(state) {
 			const { date } = state;
 			const isDisabled = disabledDateSet.has(getDayKey(date));
@@ -39,5 +44,3 @@ const disableDates = (listOfDates: DisableDatesOptions = []): Middleware => {
 		},
 	};
 };
-
-export { disableDates, type DisableDatesOptions };

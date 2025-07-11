@@ -1,16 +1,15 @@
-import {
-	toDate,
-	DATE_BOUNDARIES,
-	isWithinBounds,
-	adjustDateTimeZone,
-	type DateBoundsRaw,
-	type DateBounds,
-	type DateType,
-	type DeepPartial,
-	type ViewOffsets,
-	type Direction,
-} from '../../common';
-import { getAdjacentDate, addOffset } from './utils';
+import type {
+	DateBounds,
+	DateBoundsRaw,
+	DateType,
+	DeepPartial,
+	Direction,
+	ViewOffsets,
+} from '../../types';
+import { DATE_BOUNDARIES } from '../../utils/constants';
+import { adjustDateTimeZone, isWithinBounds, toDate } from '../../utils/date';
+import { addOffset } from './addOffset';
+import { getAdjacentDate } from './getAdjacentDate';
 
 export class Moment {
 	#date: Date;
@@ -116,7 +115,7 @@ export class Moment {
 			this.#date.setFullYear(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
 			return this;
 		} else if (__DEV__) {
-			console.warn(`The new target date is out of bounds: "${newDate.toDateString()}"`);
+			console.warn(`[Moment] The new target date is out of bounds: "${newDate.toDateString()}"`);
 		}
 
 		return this;

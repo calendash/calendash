@@ -1,27 +1,16 @@
-import {
-	DATE_NAVIGATION_MODE,
-	VIEW_NAVIGATION_MODE,
-	type ViewData,
-	type ViewType,
-	type DeepPartial,
-	type DateType,
-	type NavigationMode,
-	type Direction,
-	type DateBoundsRaw,
-	type Middleware,
-} from './common';
+import type {
+	CalendarConfig,
+	DateType,
+	DeepPartial,
+	Direction,
+	NavigationMode,
+	ViewData,
+	ViewType,
+} from './types';
 import { Composer, Layout, Moment } from './helpers';
+import { DATE_NAVIGATION_MODE, VIEW_NAVIGATION_MODE } from './utils/constants';
 
-type CalendarConfig = {
-	date: DateType;
-	bounds: DateBoundsRaw;
-	view: ViewType;
-	timeZone: string;
-	skipViews: ViewType[];
-	middlewares: Middleware[];
-};
-
-class Calendar {
+export class Calendar {
 	readonly #moment: Moment;
 	readonly #layout: Layout;
 	readonly #composer: Composer;
@@ -148,5 +137,3 @@ class Calendar {
 		return this;
 	}
 }
-
-export { Calendar, type CalendarConfig };

@@ -1,4 +1,5 @@
-import { VIEWS, type ViewType } from '../../../common';
+import type { ViewType } from '../../types';
+import { VIEWS } from '../../utils/constants';
 
 /**
  * Returns the list of visible views, excluding any specified in the `skipViews` array.

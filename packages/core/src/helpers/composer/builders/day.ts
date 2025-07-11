@@ -1,5 +1,5 @@
-import { type Day, type DayCell, type Grid, isSameDay } from '../../../common';
-import { type BuilderContext, isDateDisabled } from '../utils';
+import type { BuilderContext, Day, DayCell, Grid } from '../../../types';
+import { isDateDisabled, isSameDay } from '../../../utils/date';
 
 export function day(ctx: BuilderContext): Day {
 	const { target, today, bounds, middlewares } = ctx;

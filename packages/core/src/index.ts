@@ -1,4 +1,4 @@
 export * from './calendar';
-export * from './common';
+export * from './utils';
 export * from './helpers';
 export * from './middlewares';

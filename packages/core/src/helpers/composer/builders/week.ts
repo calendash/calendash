@@ -1,12 +1,13 @@
-import { isSameDay, isSameWeek, type WeekCell, type Week } from '../../../common';
-import { type BuilderContext, buildGrid, isDateDisabled } from '../utils';
+import type { BuilderContext, Week, WeekCell } from '../../../types';
+import { isDateDisabled, isSameDay, isSameWeek } from '../../../utils/date';
+import { createGrid } from '../../../utils/array';
 
 export function week(ctx: BuilderContext): Week {
 	const { target, today, bounds, middlewares } = ctx;
 	const date = new Date(target.getTime());
 	date.setDate(date.getDate() - date.getDay());
 
-	const weekCells = buildGrid<WeekCell>(1, 7, (_, j) => {
+	const weekCells = createGrid<WeekCell>(1, 7, (_, j) => {
 		const current = new Date(date.getTime());
 		current.setDate(current.getDate() + j);
 		return {

@@ -1,10 +1,11 @@
-import { isSameMonth, isSameYear, type Year, type YearCell } from '../../../common';
-import { buildGrid, isDateDisabled, type BuilderContext } from '../utils';
+import type { BuilderContext, Year, YearCell } from '../../../types';
+import { isDateDisabled, isSameMonth, isSameYear } from '../../../utils/date';
+import { createGrid } from '../../../utils/array';
 
 function year(ctx: BuilderContext): Year {
 	const { target, today, bounds, middlewares } = ctx;
 	const current = new Date(target.getTime());
-	const yearCells = buildGrid<YearCell>(4, 3, (i, j) => {
+	const yearCells = createGrid<YearCell>(4, 3, (i, j) => {
 		const monthIndex = i * 3 + j;
 		current.setMonth(monthIndex);
 		return {

@@ -22,3 +22,4 @@ export const DATE_FORMAT_OPTS = {
 } as const;
 export const DATE_NAVIGATION_MODE = 'date' as const;
 export const VIEW_NAVIGATION_MODE = 'view' as const;
+export const ISO_DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
