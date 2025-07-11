@@ -1,0 +1,1 @@
+export const FORMATS = ['esm', 'mjs', 'cjs', 'umd', 'browser'] as const;
