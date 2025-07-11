@@ -1,5 +1,5 @@
 import { Layout } from '../../../src/helpers/layout';
-import { VIEWS, DIRECTION_NEXT, DIRECTION_PREV } from '../../../src/common';
+import { VIEWS, DIRECTION_NEXT, DIRECTION_PREV } from '../../../src/utils/constants';
 
 describe('Layout', () => {
 	describe('constructor', () => {

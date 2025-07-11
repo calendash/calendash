@@ -1,5 +1,6 @@
+import type { DateBoundsRaw } from '../../../src/types';
 import { Moment } from '../../../src/helpers/moment';
-import { DATE_BOUNDARIES, type DateBoundsRaw } from '../../../src/common';
+import { DATE_BOUNDARIES } from '../../../src/utils/constants';
 
 describe('Moment', () => {
 	const bounds: DateBoundsRaw = {
