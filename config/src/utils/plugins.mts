@@ -3,7 +3,7 @@ import type { PluginsOption } from './types.mjs';
 import babel from '@rollup/plugin-babel';
 import nodeResolve from '@rollup/plugin-node-resolve';
 
-export default (plugins?: PluginsOption): readonly Plugin[] =>{
+export default (plugins?: PluginsOption): readonly Plugin[] => {
 	const { node: nodeOverride, babel: babelOverride, ...restOfPlugins } = plugins ?? {};
 	const pluginOverrides = Object.values(restOfPlugins).filter((plugin): plugin is Plugin =>
 		Boolean(plugin)

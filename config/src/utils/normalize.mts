@@ -1,14 +1,9 @@
 import type { GlobalsOption } from 'rollup';
 import { FORMATS } from './constants.mjs';
-import type {
-  FormatOutputs,
-  FormatType,
-  NormalizedOutputs,
-  NormalizedProps
-} from './types.mjs';
+import type { FormatOutputs, FormatType, NormalizedOutputs, NormalizedProps } from './types.mjs';
 
-export default (outputs?: FormatOutputs, globals?: GlobalsOption): NormalizedOutputs => (
-  FORMATS.reduce(
+export default (outputs?: FormatOutputs, globals?: GlobalsOption): NormalizedOutputs =>
+	FORMATS.reduce(
 		(acc, format) => {
 			// Get current output config options
 			const formatOptions = outputs?.[format];
@@ -29,5 +24,4 @@ export default (outputs?: FormatOutputs, globals?: GlobalsOption): NormalizedOut
 			};
 		},
 		{} as Record<FormatType, NormalizedProps>
-	)
-);
+	);

@@ -6,9 +6,9 @@ type OutputProps = {
 };
 
 export type PluginsOption = {
-  node?: Plugin;
-  babel?: Plugin;
-  [key: string]: Plugin | undefined;
+	node?: Plugin;
+	babel?: Plugin;
+	[key: string]: Plugin | undefined;
 };
 export type InputOption = {
 	path: string;
