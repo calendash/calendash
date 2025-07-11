@@ -1,0 +1,68 @@
+{
+  "name": "@calendash/core",
+  "version": "0.0.0",
+  "description": "Framework-agnostic JavaScript library that provides classes for customizable date and time components.",	"sideEffects": false,
+  "packageManager": "pnpm@10.12.1",
+	"publishConfig": {
+		"access": "public"
+	},
+	"engines": {
+		"node": ">=22.15.0",
+		"pnpm": ">=10.10.0"
+	},
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"main": "./dist/calendash.core.umd.js",
+	"module": "./dist/calendash.core.esm.js",
+	"unpkg": "./dist/calendash.core.umd.min.js",
+	"types": "./dist/calendash.core.d.ts",
+	"exports": {
+		"./package.json": "./package.json",
+		".": {
+			"import": {
+				"types": "./dist/calendash.core.d.mts",
+				"default": "./dist/calendash.core.mjs"
+			},
+			"types": "./dist/calendash.core.d.ts",
+			"module": "./dist/calendash.core.esm.js",
+			"default": "./dist/calendash.core.umd.js"
+		}
+	},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+	"devDependencies": {
+		"@calendash/config": "workspace:*"
+	},
+  "keywords": [
+		"time",
+		"date",
+		"calendar",
+		"time-picker",
+		"datepicker",
+		"datetime",
+		"date-picker",
+		"timepicker",
+		"date-time-picker",
+		"scheduler",
+  	"component",
+  	"customizable"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+ssh://git@github.com/calendash/calendash.git",
+		"directory": "packages/core"
+	},
+	"bugs": {
+		"url": "https://github.com/calendash/calendash/issues"
+	},
+	"homepage": "https://github.com/calendash/calendash/packages/core#readme",
+  "author": {
+		"email": "ruben.omh@proton.me",
+		"name": "rocmaz"
+	},
+  "license": "MIT",
+	"private": false
+}
