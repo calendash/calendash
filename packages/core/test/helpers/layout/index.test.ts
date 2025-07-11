@@ -2,25 +2,27 @@ import { Layout } from '../../../src/helpers/layout';
 import { VIEWS, DIRECTION_NEXT, DIRECTION_PREV } from '../../../src/common';
 
 describe('Layout', () => {
-	it('initializes with default values', () => {
-		const layout = new Layout();
-		expect(layout.view).toBe(VIEWS[0]);
-	});
+	describe('constructor', () => {
+		it('initializes with default values', () => {
+			const layout = new Layout();
+			expect(layout.view).toBe(VIEWS[0]);
+		});
 
-	it('initializes with a specific target view', () => {
-		const layout = new Layout('week');
-		expect(layout.view).toBe('week');
-	});
+		it('initializes with a specific target view', () => {
+			const layout = new Layout('week');
+			expect(layout.view).toBe('week');
+		});
 
-	it('falls back to default view if target view is skipped', () => {
-		const layout = new Layout('week', ['week']);
-		expect(layout.view).toBe(VIEWS[0]);
-	});
+		it('falls back to default view if target view is skipped', () => {
+			const layout = new Layout('week', ['week']);
+			expect(layout.view).toBe(VIEWS[0]);
+		});
 
-	it('throws if all views are skipped', () => {
-		expect(() => new Layout(undefined, [...VIEWS])).toThrow(
-			'Invalid skipViews: excluding all views is not allowed'
-		);
+		it('throws if all views are skipped', () => {
+			expect(() => new Layout(undefined, [...VIEWS])).toThrow(
+				'Invalid skipViews: excluding all views is not allowed'
+			);
+		});
 	});
 
 	describe('getAdjacentView', () => {
