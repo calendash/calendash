@@ -1,21 +1,7 @@
-import { isSameYear, isSameDecade } from '../../../common';
-import { type BuilderContext, buildGrid, type Grid, isDateDisabled } from '../utils';
+import { isSameYear, isSameDecade, type Decade, type DecadeCell } from '../../../common';
+import { type BuilderContext, buildGrid, isDateDisabled } from '../utils';
 
-type DecadeCell = {
-	time: number;
-	year: number;
-	isCurrentYear: boolean;
-	isOutOfRange: boolean;
-	isSelected: boolean;
-	isDisabled: boolean;
-};
-
-type Decade = {
-	isCurrentDecade: boolean;
-	cells: Grid<DecadeCell>;
-};
-
-function decade(ctx: BuilderContext): Decade {
+export function decade(ctx: BuilderContext): Decade {
 	const { target, today, bounds, middlewares } = ctx;
 	const startYear = Math.floor(target.getFullYear() / 10) * 10;
 	const current = new Date(target.getTime());
@@ -37,5 +23,3 @@ function decade(ctx: BuilderContext): Decade {
 		cells: decadeCells,
 	};
 }
-
-export { decade, type DecadeCell, type Decade };

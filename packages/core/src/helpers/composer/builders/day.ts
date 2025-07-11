@@ -1,22 +1,7 @@
-import { isSameDay } from '../../../common';
-import { type BuilderContext, type Grid, isDateDisabled } from '../utils';
+import { type Day, type DayCell, type Grid, isSameDay } from '../../../common';
+import { type BuilderContext, isDateDisabled } from '../utils';
 
-type DayCell = {
-	time: number;
-	day: number;
-	dayOfWeek: number;
-	month: number;
-	year: number;
-	isSelected: boolean;
-	isDisabled: boolean;
-};
-
-type Day = {
-	isCurrentDay: boolean;
-	cells: Grid<DayCell>;
-};
-
-function day(ctx: BuilderContext): Day {
+export function day(ctx: BuilderContext): Day {
 	const { target, today, bounds, middlewares } = ctx;
 	const cell: Grid<DayCell> = [
 		[
@@ -37,5 +22,3 @@ function day(ctx: BuilderContext): Day {
 		cells: cell,
 	};
 }
-
-export { day, type DayCell, type Day };

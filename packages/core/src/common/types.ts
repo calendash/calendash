@@ -6,7 +6,6 @@ import type {
 	VIEW_NAVIGATION_MODE,
 	VIEWS,
 } from './constants';
-import type { Day, Decade, Month, Week, Year } from '../helpers/composer/builders';
 
 export type ViewType = (typeof VIEWS)[number];
 export type DateType = string | number | Date;
@@ -36,6 +35,60 @@ export type Middleware = {
 	name: string;
 	options?: unknown;
 	fn: (state: MiddlewareState) => MiddlewareReturn;
+};
+export type Grid<T> = T[][];
+export type DayCell = {
+	time: number;
+	day: number;
+	dayOfWeek: number;
+	month: number;
+	year: number;
+	isSelected: boolean;
+	isDisabled: boolean;
+};
+export type WeekCell = DayCell & {
+	isCurrentDay: boolean;
+	isOutOfRange: boolean;
+};
+export type MonthCell = WeekCell & {
+	isCurrentWeek: boolean;
+};
+export type YearCell = {
+	time: number;
+	month: number;
+	year: number;
+	isCurrentMonth: boolean;
+	isOutOfRange: boolean;
+	isSelected: boolean;
+	isDisabled: boolean;
+};
+export type DecadeCell = {
+	time: number;
+	year: number;
+	isCurrentYear: boolean;
+	isOutOfRange: boolean;
+	isSelected: boolean;
+	isDisabled: boolean;
+};
+export type Day = {
+	isCurrentDay: boolean;
+	cells: Grid<DayCell>;
+};
+export type Week = {
+	isCurrentWeek: boolean;
+	cells: Grid<WeekCell>;
+};
+export type Month = {
+	isCurrentMonth: boolean;
+	cells: Grid<MonthCell>;
+};
+export type Year = {
+	isCurrentYear: boolean;
+	cells: Grid<YearCell>;
+};
+export type Decade = {
+	isCurrentDecade: boolean;
+	cells: Grid<DecadeCell>;
 };
 export type ViewData = {
 	day: Day;

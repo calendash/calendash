@@ -1,21 +1,5 @@
-import { isSameMonth, isSameYear } from '../../../common';
-import type { BuilderContext, Grid } from '../utils';
-import { buildGrid, isDateDisabled } from '../utils';
-
-type YearCell = {
-	time: number;
-	month: number;
-	year: number;
-	isCurrentMonth: boolean;
-	isOutOfRange: boolean;
-	isSelected: boolean;
-	isDisabled: boolean;
-};
-
-type Year = {
-	isCurrentYear: boolean;
-	cells: Grid<YearCell>;
-};
+import { isSameMonth, isSameYear, type Year, type YearCell } from '../../../common';
+import { buildGrid, isDateDisabled, type BuilderContext } from '../utils';
 
 function year(ctx: BuilderContext): Year {
 	const { target, today, bounds, middlewares } = ctx;

@@ -1,4 +1,4 @@
-import type { Grid } from './types';
+import type { Grid } from '../../../common';
 
 export function buildGrid<T>(
 	rows: number,
