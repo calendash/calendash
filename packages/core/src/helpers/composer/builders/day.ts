@@ -1,5 +1,20 @@
-import type { BuilderContext, Day, DayCell, Grid } from '../../../types';
 import { isDateDisabled, isSameDay } from '../../../utils/date';
+import type { BuilderContext, Grid } from '../../types';
+
+export type DayCell = {
+	time: number;
+	day: number;
+	dayOfWeek: number;
+	month: number;
+	year: number;
+	isSelected: boolean;
+	isDisabled: boolean;
+};
+
+export type Day = {
+	isCurrentDay: boolean;
+	cells: Grid<DayCell>;
+};
 
 export function day(ctx: BuilderContext): Day {
 	const { target, today, bounds, middlewares } = ctx;

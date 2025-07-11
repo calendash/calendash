@@ -1,4 +1,4 @@
-import type { Middleware } from '../types';
+import type { Middleware } from './types';
 import { ISO_DATE_REGEX } from '../utils/constants';
 import { getDayKey } from '../utils/date';
 

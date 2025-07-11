@@ -6,8 +6,8 @@ import type {
 	Middleware,
 	ViewData,
 	ViewType,
-} from '../../types';
-import { isPlainObject } from '../../utils';
+} from '../types';
+import { isPlainObject } from '../../utils/object';
 import { DATE_BOUNDARIES } from '../../utils/constants';
 import { adjustDateTimeZone, isDate, toDate } from '../../utils/date';
 import { day, month, week, year, decade } from './builders';

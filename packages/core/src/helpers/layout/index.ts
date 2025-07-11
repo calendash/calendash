@@ -1,4 +1,4 @@
-import type { Direction, ViewType } from '../../types';
+import type { Direction, ViewType } from '../types';
 import { DIRECTION_NAME, VIEWS } from '../../utils/constants';
 import { getAdjacentView } from './getAdjacentView';
 import { getVisibleViews } from './getVisibleViews';

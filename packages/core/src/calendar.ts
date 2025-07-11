@@ -1,14 +1,24 @@
 import type {
-	CalendarConfig,
+	DateBoundsRaw,
 	DateType,
 	DeepPartial,
 	Direction,
+	Middleware,
 	NavigationMode,
 	ViewData,
 	ViewType,
 } from './types';
 import { Composer, Layout, Moment } from './helpers';
 import { DATE_NAVIGATION_MODE, VIEW_NAVIGATION_MODE } from './utils/constants';
+
+export type CalendarConfig = {
+	date: DateType;
+	bounds: DateBoundsRaw;
+	view: ViewType;
+	timeZone: string;
+	skipViews: ViewType[];
+	middlewares: Middleware[];
+};
 
 export class Calendar {
 	readonly #moment: Moment;

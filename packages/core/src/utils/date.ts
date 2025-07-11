@@ -1,5 +1,5 @@
 import { DATE_FORMAT_OPTS, MAX_CACHE_SIZE } from './constants';
-import type { DateBounds, Middleware } from '../types';
+import type { DateBounds, Middleware } from './types';
 
 /**
  * Checks if the given value is a valid Date object.

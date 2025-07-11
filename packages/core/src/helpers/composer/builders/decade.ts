@@ -1,6 +1,20 @@
-import type { BuilderContext, Decade, DecadeCell } from '../../../types';
+import type { BuilderContext, Grid } from '../../types';
 import { isDateDisabled, isSameDecade, isSameYear } from '../../../utils/date';
 import { createGrid } from '../../../utils/array';
+
+export type DecadeCell = {
+	time: number;
+	year: number;
+	isCurrentYear: boolean;
+	isOutOfRange: boolean;
+	isSelected: boolean;
+	isDisabled: boolean;
+};
+
+export type Decade = {
+	isCurrentDecade: boolean;
+	cells: Grid<DecadeCell>;
+};
 
 export function decade(ctx: BuilderContext): Decade {
 	const { target, today, bounds, middlewares } = ctx;

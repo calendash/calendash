@@ -1,4 +1,4 @@
-import type { Grid } from '../types';
+import type { Grid } from './types';
 
 /**
  * Creates a 2D grid (matrix) of specified dimensions and fills it using a builder function.

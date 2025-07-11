@@ -1,4 +1,2 @@
-export * from './calendar';
-export * from './utils';
-export * from './helpers';
-export * from './middlewares';
+export { Calendar, type CalendarConfig } from './calendar';
+export type * from './types';

@@ -5,7 +5,7 @@ import type {
 	DeepPartial,
 	Direction,
 	ViewOffsets,
-} from '../../types';
+} from '../types';
 import { DATE_BOUNDARIES } from '../../utils/constants';
 import { adjustDateTimeZone, isWithinBounds, toDate } from '../../utils/date';
 import { addOffset } from './addOffset';

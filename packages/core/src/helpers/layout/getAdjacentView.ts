@@ -1,4 +1,4 @@
-import type { ViewType } from '../../types';
+import type { ViewType } from '../types';
 import { DIRECTION_NEXT, DIRECTION_PREV } from '../../utils/constants';
 import { clamp, isInteger } from '../../utils/numeric';
 
