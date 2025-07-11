@@ -16,6 +16,10 @@
     "clean": "rimraf dist",
     "postinstall": "pnpm run build"
   },
+  "bin": {
+    "build-api": "./scripts/build-api.mjs",
+    "fetch-exports": "./scripts/fetch-exports.mjs"
+  },
   "author": {
 		"email": "ruben.omh@proton.me",
 		"name": "rocmaz"
