@@ -31,7 +31,11 @@
 		}
 	},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+		"clean": "nx run core:clean",
+		"test": "nx run core:test --verbose",
+		"lint": "nx run core:lint --verbose",
+		"build": "nx run core:build --verbose",
+		"prepack": "nx run core:prepack --verbose"
   },
 	"devDependencies": {
 		"@calendash/config": "workspace:*"
