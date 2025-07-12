@@ -1,4 +1,4 @@
-import type { DateBoundsRaw } from '../../../src/types';
+import type { DateBoundsRaw } from '../../../src/helpers/types';
 import { Moment } from '../../../src/helpers/moment';
 import { DATE_BOUNDARIES } from '../../../src/utils/constants';
 
