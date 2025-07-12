@@ -101,7 +101,7 @@ export class Calendar {
 		const { date, bounds, skipViews, timeZone, view, middlewares } = config ?? {};
 		this.#moment = new Moment(date, bounds);
 		this.#layout = new Layout(view, skipViews);
-		this.#composer = new Composer(bounds, timeZone, middlewares);
+		this.#composer = new Composer(timeZone, bounds, middlewares);
 
 		if (timeZone) {
 			this.#moment.toZonedDateTime(timeZone);

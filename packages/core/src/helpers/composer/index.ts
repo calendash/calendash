@@ -32,16 +32,28 @@ const dataBuilders: DataBuilders = {
 	decade,
 } as const;
 
+/**
+ * The Composer class is responsible for generating calendar view data
+ * (e.g. day, week, month, year, decade) using appropriate builder strategies.
+ * It supports middleware application and internal caching to avoid redundant builds.
+ */
 export class Composer {
 	#cache: ComposerCache<ViewType> | null = null;
 	readonly #today: Date;
 	readonly #bounds: DateBounds;
 	readonly #middlewares: Middleware[];
 
+	/**
+	 * Creates a new Composer instance.
+	 *
+	 * @param timeZone - Optional time zone string to normalize date inputs.
+	 * @param rawBounds - Optional object to define `min` and `max` date limits.
+	 * @param middlewares - Optional array of middleware functions to enhance or modify the context.
+	 */
 	constructor(
-		rawBounds?: DeepPartial<DateBoundsRaw>,
-		timeZone?: string,
-		middlewares: Middleware[] = []
+		timeZone?: string | null,
+		rawBounds?: DeepPartial<DateBoundsRaw> | null,
+		middlewares?: Middleware[] | null
 	) {
 		this.#today = !!timeZone ? adjustDateTimeZone(new Date(), timeZone) : new Date();
 		const max = toDate(rawBounds?.max ?? DATE_BOUNDARIES.max);
@@ -50,11 +62,21 @@ export class Composer {
 			max: !!timeZone ? adjustDateTimeZone(max, timeZone) : max,
 			min: !!timeZone ? adjustDateTimeZone(min, timeZone) : min,
 		};
-		this.#middlewares = middlewares.filter((middleware): middleware is Middleware =>
-			isPlainObject(middleware)
-		);
+		this.#middlewares = !!middlewares
+			? middlewares.filter((middleware): middleware is Middleware => isPlainObject(middleware))
+			: [];
 	}
 
+	/**
+	 * Generates view data for a specific calendar view and target date.
+	 * Uses caching to avoid rebuilding if input hasn't changed.
+	 *
+	 * @typeParam V - A valid view type (e.g., 'day', 'week', etc.)
+	 * @param view - The calendar view type to build.
+	 * @param target - The target date for which to generate view data.
+	 * @returns The generated view data for the given view and date.
+	 * @throws Will throw an error if the target date is invalid or if the builder strategy is missing.
+	 */
 	data<V extends ViewType>(view: V, target: Date): ViewData[V] {
 		if (!isDate(target)) {
 			// TODO: Create dedicated exception
