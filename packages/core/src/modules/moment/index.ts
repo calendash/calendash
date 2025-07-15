@@ -12,18 +12,42 @@ import { addOffset } from './addOffset';
 import { getAdjacentDate } from './getAdjacentDate';
 
 export type MomentConfig = {
+	/**
+	 * Optional target date to initialize the moment with.
+	 * Can be a `Date`, timestamp, or ISO string. Defaults to the current date/time.
+	 */
 	targetDate?: DateType;
+
+	/**
+	 * Optional date boundaries (min and/or max) to restrict allowed date ranges.
+	 * If the provided target date falls outside these bounds, an error will be thrown.
+	 */
 	bounds?: DeepPartial<DateBoundsRaw>;
 };
 
+/**
+ * The Moment class is responsible for managing the current target date
+ * and enforcing calendar bounds. It acts as the core source of truth
+ * for date state within the calendar system.
+ */
 export class Moment {
 	#date: Date;
 	#bounds: DateBounds;
 
+	/**
+	 * Gets the current target date.
+	 *
+	 * @returns The active `Date` instance used as the base for calendar views.
+	 */
 	get date(): Date {
 		return this.#date;
 	}
 
+	/**
+	 * Gets the current date boundaries.
+	 *
+	 * @returns An object containing the minimum and maximum allowed dates.
+	 */
 	get bounds(): DateBounds {
 		return this.#bounds;
 	}
