@@ -1,4 +1,4 @@
-import type { ViewOffsets } from '../types';
+import type { ViewOffsets } from '../../types';
 
 type ViewOffsetKey = keyof ViewOffsets;
 type ViewOffsetHandler = (date: Date, offset: number) => void;

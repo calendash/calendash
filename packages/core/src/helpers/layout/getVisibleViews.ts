@@ -1,4 +1,4 @@
-import type { ViewType } from '../types';
+import type { ViewType } from '../../types';
 import { VIEWS } from '../../utils/constants';
 
 /**

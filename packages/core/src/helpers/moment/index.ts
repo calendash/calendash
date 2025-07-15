@@ -5,11 +5,15 @@ import type {
 	DeepPartial,
 	Direction,
 	ViewOffsets,
-} from '../types';
-import { DATE_BOUNDARIES } from '../../utils/constants';
-import { adjustDateTimeZone, isWithinBounds, toDate } from '../../utils/date';
+} from '../../types';
+import { DATE_BOUNDARIES, adjustDateTimeZone, isWithinBounds, toDate } from '../../utils';
 import { addOffset } from './addOffset';
 import { getAdjacentDate } from './getAdjacentDate';
+
+export type MomentConfig = {
+	targetDate?: DateType;
+	bounds?: DeepPartial<DateBoundsRaw>;
+};
 
 export class Moment {
 	#date: Date;
@@ -23,9 +27,11 @@ export class Moment {
 		return this.#bounds;
 	}
 
-	constructor(rawDate?: DateType, rawBounds?: DeepPartial<DateBoundsRaw>) {
+	constructor(config?: MomentConfig) {
+		const { targetDate = Date.now(), bounds: rawBounds } = config ?? {};
+
 		// Normalize input options
-		const date = toDate(rawDate ?? Date.now());
+		const date = toDate(targetDate);
 		const bounds = {
 			max: toDate(rawBounds?.max ?? DATE_BOUNDARIES.max),
 			min: toDate(rawBounds?.min ?? DATE_BOUNDARIES.min),

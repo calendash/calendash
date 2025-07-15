@@ -28,34 +28,7 @@
 			"types": "./dist/calendash.core.d.ts",
 			"module": "./dist/calendash.core.esm.js",
 			"default": "./dist/calendash.core.umd.js"
-		},
-    "./helpers": {
-      "import": {
-				"types": "./dist/calendash.core.helpers.d.mts",
-        "default": "./dist/calendash.core.helpers.mjs"
-      },
-			"types": "./dist/calendash.core.helpers.d.ts",
-      "module": "./dist/calendash.core.helpers.esm.js",
-      "default": "./dist/calendash.core.helpers.umd.js"
-    },
-    "./utils": {
-      "import": {
-				"types": "./dist/calendash.core.utils.d.mts",
-        "default": "./dist/calendash.core.utils.mjs"
-      },
-			"types": "./dist/calendash.core.utils.d.ts",
-      "module": "./dist/calendash.core.utils.esm.js",
-      "default": "./dist/calendash.core.utils.umd.js"
-    },
-    "./middlewares": {
-      "import": {
-				"types": "./dist/calendash.core.middlewares.d.mts",
-        "default": "./dist/calendash.core.middlewares.mjs"
-      },
-			"types": "./dist/calendash.core.middlewares.d.ts",
-      "module": "./dist/calendash.core.middlewares.esm.js",
-      "default": "./dist/calendash.core.middlewares.umd.js"
-    }
+		}
 	},
   "scripts": {
 		"clean": "nx run core:clean",

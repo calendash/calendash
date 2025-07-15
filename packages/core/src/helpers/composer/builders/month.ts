@@ -1,16 +1,5 @@
-import type { BuilderContext, Grid } from '../../types';
-import type { WeekCell } from './week';
-import { isDateDisabled, isSameDay, isSameMonth, isSameWeek } from '../../../utils/date';
-import { createGrid } from '../../../utils/array';
-
-export type MonthCell = WeekCell & {
-	isCurrentWeek: boolean;
-};
-
-export type Month = {
-	isCurrentMonth: boolean;
-	cells: Grid<MonthCell>;
-};
+import type { BuilderContext, Month, MonthCell } from '../../../types';
+import { isDateDisabled, isSameDay, isSameMonth, isSameWeek, createGrid } from '../../../utils';
 
 export function month(ctx: BuilderContext): Month {
 	const { target, today, bounds, middlewares } = ctx;

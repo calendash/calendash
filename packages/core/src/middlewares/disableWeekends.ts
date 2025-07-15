@@ -1,13 +1,12 @@
-import type { Middleware } from './types';
+import type { Middleware } from '../types';
 import { ISO_DATE_REGEX } from '../utils/constants';
 import { getDayKey } from '../utils/date';
 
-/**
- * Options for the `disableWeekends` middleware.
- *
- * @property exclude - An optional list of date strings in `'YYYY-MM-DD'` format to exclude from being disabled.
- */
 export type DisableWeekendsOptions = {
+	/**
+	 * List of date strings in `'YYYY-MM-DD'`
+	 * format to exclude from being disabled.
+	 */
 	exclude?: string[];
 };
 

@@ -1,4 +1,4 @@
-import type { Bound, Direction, NavigationMode, ViewType } from './types';
+import type { Bound, Direction, NavigationMode, ViewType } from '../types';
 
 export const VIEWS: readonly ViewType[] = ['day', 'week', 'month', 'year', 'decade'] as const;
 export const BOUNDS: readonly Bound[] = ['min', 'max'] as const;

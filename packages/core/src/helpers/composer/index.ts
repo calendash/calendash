@@ -6,10 +6,8 @@ import type {
 	Middleware,
 	ViewData,
 	ViewType,
-} from '../types';
-import { isPlainObject } from '../../utils/object';
-import { DATE_BOUNDARIES } from '../../utils/constants';
-import { adjustDateTimeZone, isDate, toDate } from '../../utils/date';
+} from '../../types';
+import { adjustDateTimeZone, DATE_BOUNDARIES, isPlainObject, isDate, toDate } from '../../utils';
 import { day, month, week, year, decade } from './builders';
 
 type ComposerCache<V extends ViewType> = {
@@ -32,6 +30,12 @@ const dataBuilders: DataBuilders = {
 	decade,
 } as const;
 
+export type ComposerConfig = {
+	timeZone?: string;
+	bounds?: DeepPartial<DateBoundsRaw>;
+	middlewares?: Middleware[];
+};
+
 /**
  * The Composer class is responsible for generating calendar view data
  * (e.g. day, week, month, year, decade) using appropriate builder strategies.
@@ -50,14 +54,11 @@ export class Composer {
 	 * @param rawBounds - Optional object to define `min` and `max` date limits.
 	 * @param middlewares - Optional array of middleware functions to enhance or modify the context.
 	 */
-	constructor(
-		timeZone?: string | null,
-		rawBounds?: DeepPartial<DateBoundsRaw> | null,
-		middlewares?: Middleware[] | null
-	) {
+	constructor(config?: ComposerConfig) {
+		const { timeZone, bounds, middlewares = [] } = config ?? {};
 		this.#today = !!timeZone ? adjustDateTimeZone(new Date(), timeZone) : new Date();
-		const max = toDate(rawBounds?.max ?? DATE_BOUNDARIES.max);
-		const min = toDate(rawBounds?.min ?? DATE_BOUNDARIES.min);
+		const max = toDate(bounds?.max ?? DATE_BOUNDARIES.max);
+		const min = toDate(bounds?.min ?? DATE_BOUNDARIES.min);
 		this.#bounds = {
 			max: !!timeZone ? adjustDateTimeZone(max, timeZone) : max,
 			min: !!timeZone ? adjustDateTimeZone(min, timeZone) : min,

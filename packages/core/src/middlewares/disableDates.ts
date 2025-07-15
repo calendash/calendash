@@ -1,12 +1,12 @@
-import type { Middleware } from './types';
+import type { Middleware } from '../types';
 import { ISO_DATE_REGEX } from '../utils/constants';
 import { getDayKey } from '../utils/date';
 
-/**
- * Type definition for the list of disabled date strings.
- * Must follow the `'YYYY-MM-DD'` format (e.g., `'2025-07-03'`).
- */
 export type DisableDatesOptions = {
+	/**
+	 * List of disabled date strings.
+	 * Must follow the `'YYYY-MM-DD'` format (e.g., `'2025-07-03'`).
+	 */
 	listOfDates?: string[];
 };
 

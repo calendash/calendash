@@ -1,7 +1,12 @@
-import type { Direction, ViewType } from '../types';
+import type { Direction, ViewType } from '../../types';
 import { DIRECTION_NAME, VIEWS } from '../../utils/constants';
 import { getAdjacentView } from './getAdjacentView';
 import { getVisibleViews } from './getVisibleViews';
+
+export type LayoutConfig = {
+	viewTarget?: ViewType;
+	skipViews?: ViewType[];
+};
 
 export class Layout {
 	#view: ViewType;
@@ -11,8 +16,9 @@ export class Layout {
 		return this.#view;
 	}
 
-	constructor(viewTarget: ViewType = VIEWS[0], skipViews?: ViewType[]) {
-		const views = getVisibleViews(skipViews ?? []);
+	constructor(config?: LayoutConfig) {
+		const { viewTarget = VIEWS[0], skipViews = [] } = config ?? {};
+		const views = getVisibleViews(skipViews);
 
 		if (views.length === 0) {
 			// TODO: Create dedicated exception

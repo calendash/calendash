@@ -12,14 +12,43 @@ import { Composer, Layout, Moment } from './helpers';
 import { DATE_NAVIGATION_MODE, VIEW_NAVIGATION_MODE } from './utils/constants';
 
 export type CalendarConfig = {
+	/**
+	 * The reference date for the calendar (e.g., today or a selected date).
+	 */
 	date: DateType;
+
+	/**
+	 * The allowed date bounds (minimum and maximum).
+	 * This restricts navigation and selection to within this range.
+	 */
 	bounds: DateBoundsRaw;
+
+	/**
+	 * The initial active view of the calendar (e.g., 'day', 'week', 'month').
+	 */
 	view: ViewType;
+
+	/**
+	 * Time zone used for rendering dates.
+	 * Example: 'America/New_York', 'UTC'.
+	 */
 	timeZone: string;
+
+	/**
+	 * Views that should be skipped or hidden from navigation.
+	 */
 	skipViews: ViewType[];
+
+	/**
+	 * Middleware functions to manipulate returned calendar view data.
+	 */
 	middlewares: Middleware[];
 };
 
+/**
+ * Primary Calendar class handling date navigation,
+ * view transitions, and middleware-based data transformation.
+ */
 export class Calendar {
 	readonly #moment: Moment;
 	readonly #layout: Layout;
@@ -99,9 +128,9 @@ export class Calendar {
 
 	constructor(config?: DeepPartial<CalendarConfig>) {
 		const { date, bounds, skipViews, timeZone, view, middlewares } = config ?? {};
-		this.#moment = new Moment(date, bounds);
-		this.#layout = new Layout(view, skipViews);
-		this.#composer = new Composer(timeZone, bounds, middlewares);
+		this.#moment = new Moment({ bounds, targetDate: date });
+		this.#layout = new Layout({ viewTarget: view, skipViews });
+		this.#composer = new Composer({ bounds, timeZone, middlewares });
 
 		if (timeZone) {
 			this.#moment.toZonedDateTime(timeZone);

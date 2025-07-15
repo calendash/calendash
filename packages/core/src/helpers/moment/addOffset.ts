@@ -1,6 +1,5 @@
-import type { DeepPartial, ViewOffsets } from '../types';
-import { isInteger } from '../../utils/numeric';
-import { isPlainObject } from '../../utils/object';
+import type { DeepPartial, ViewOffsets } from '../../types';
+import { isInteger, isPlainObject } from '../../utils';
 import { dateOffsetStrategies } from './dateOffsetStrategies';
 
 /**

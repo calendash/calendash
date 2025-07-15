@@ -1,17 +1,5 @@
-import type { BuilderContext, Grid } from '../../types';
-import type { DayCell } from './day';
-import { isDateDisabled, isSameDay, isSameWeek } from '../../../utils/date';
-import { createGrid } from '../../../utils/array';
-
-export type WeekCell = DayCell & {
-	isCurrentDay: boolean;
-	isOutOfRange: boolean;
-};
-
-export type Week = {
-	isCurrentWeek: boolean;
-	cells: Grid<WeekCell>;
-};
+import type { BuilderContext, Week, WeekCell } from '../../../types';
+import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../utils';
 
 export function week(ctx: BuilderContext): Week {
 	const { target, today, bounds, middlewares } = ctx;
