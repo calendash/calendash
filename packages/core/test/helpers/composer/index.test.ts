@@ -26,13 +26,13 @@ describe('Composer', () => {
 		test('throws error if invalid time zone is provided', () => {
 			const tz = 'invalid-timeZone';
 			expect(() => {
-				new Composer(tz);
+				new Composer({ timeZone: tz });
 			}).toThrow(`Invalid time zone specified: ${tz}`);
 		});
 
 		test('throws error if invalid bounds are provided', () => {
 			expect(() => {
-				new Composer(null, { min: 'invalid-date' });
+				new Composer({ bounds: { min: 'invalid-date' } });
 			}).toThrow('Invalid date input. Could not convert to Date object.');
 		});
 	});

@@ -1,4 +1,4 @@
-import type { DateBoundsRaw } from '../../../src/helpers/types';
+import type { DateBoundsRaw } from '../../../src/types';
 import { Moment } from '../../../src/helpers/moment';
 import { DATE_BOUNDARIES } from '../../../src/utils/constants';
 
@@ -30,14 +30,14 @@ describe('Moment', () => {
 
 		it('initializes with given date within bounds', () => {
 			const date = new Date('2025-03-21T23:59:59.999Z');
-			const moment = new Moment(date, bounds);
+			const moment = new Moment({ targetDate: date, bounds });
 			expect(moment).toBeInstanceOf(Moment);
 			expect(moment.date).toEqual(date);
 		});
 
 		it('throws error if date is out of bounds', () => {
 			const date = new Date('1900-01-01');
-			expect(() => new Moment(date, bounds)).toThrow(
+			expect(() => new Moment({ targetDate: date, bounds })).toThrow(
 				'Target date is outside the specified bounds.'
 			);
 		});
@@ -45,7 +45,7 @@ describe('Moment', () => {
 
 	describe('add()', () => {
 		it('adds years offset correctly', () => {
-			const moment = new Moment(new Date('2025-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T23:59:59.999Z'), bounds });
 			moment.add({ years: 4 });
 			expect(moment.date.getFullYear()).toBe(2029);
 
@@ -54,7 +54,7 @@ describe('Moment', () => {
 		});
 
 		it('adds months offset correctly', () => {
-			const moment = new Moment(new Date('2025-03-21T12:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T12:59:59.999Z'), bounds });
 			moment.add({ months: 5 });
 			expect(moment.date.getDate()).toBe(21);
 			expect(moment.date.getMonth()).toBe(7); // August index
@@ -67,7 +67,7 @@ describe('Moment', () => {
 		});
 
 		it('adds weeks offset correctly', () => {
-			const moment = new Moment(new Date('2025-03-21T12:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T12:59:59.999Z'), bounds });
 			moment.add({ weeks: 2 });
 			expect(moment.date.getDate()).toBe(4);
 			expect(moment.date.getMonth()).toBe(3); // April index
@@ -80,7 +80,7 @@ describe('Moment', () => {
 		});
 
 		it('adds days offset correctly', () => {
-			const moment = new Moment(new Date('2025-03-21T12:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T12:59:59.999Z'), bounds });
 			moment.add({ days: 5 });
 			expect(moment.date.getDate()).toBe(26);
 			expect(moment.date.getMonth()).toBe(2); // March index
@@ -93,7 +93,7 @@ describe('Moment', () => {
 		});
 
 		it('date is not updated if offset moves it out of bounds', () => {
-			const moment = new Moment(new Date('2030-03-21T12:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2030-03-21T12:59:59.999Z'), bounds });
 			moment.add({ days: 10 }); // moves out of max bound
 			expect(moment.date.getDate()).toBe(21); // date unchanged
 			expect(moment.date.getMonth()).toBe(2); // March index
@@ -103,30 +103,30 @@ describe('Moment', () => {
 
 	describe('isAdjacentDateVisible()', () => {
 		it('returns true if adjacent date is within bounds', () => {
-			const moment = new Moment(new Date('2025-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T23:59:59.999Z'), bounds });
 			expect(moment.isAdjacentDateVisible('days', 1)).toBe(true); // 22
 			expect(moment.isAdjacentDateVisible('days', -1)).toBe(true); // 20
 		});
 
 		it('returns false if adjacent (forward) date is out of bounds', () => {
-			const moment = new Moment(new Date('2030-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2030-03-21T23:59:59.999Z'), bounds });
 			expect(moment.isAdjacentDateVisible('days', 1)).toBe(false);
 		});
 
 		it('returns false if adjacent (backward) date is out of bounds', () => {
-			const moment = new Moment(new Date('2020-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2020-03-21T23:59:59.999Z'), bounds });
 			expect(moment.isAdjacentDateVisible('days', -1)).toBe(false);
 		});
 
 		it('returns true if adjacent (forward) decade is within bounds', () => {
-			const moment = new Moment(new Date('2020-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2020-03-21T23:59:59.999Z'), bounds });
 			expect(moment.isAdjacentDateVisible('decades', 1)).toBe(true);
 		});
 	});
 
 	describe('from()', () => {
 		it('jumps to specified date succesfully', () => {
-			const moment = new Moment(new Date('2025-03-21T23:59:59.999Z'), bounds);
+			const moment = new Moment({ targetDate: new Date('2025-03-21T23:59:59.999Z'), bounds });
 			const jumpDate = new Date('2030-03-21T23:59:59.999Z');
 			moment.from(jumpDate);
 			expect(moment.date).toEqual(jumpDate);
@@ -134,7 +134,7 @@ describe('Moment', () => {
 
 		it('date is not updated if given jump date is out of bounds', () => {
 			const baseDate = new Date('2025-03-21T23:59:59.999Z');
-			const moment = new Moment(baseDate, bounds);
+			const moment = new Moment({ targetDate: baseDate, bounds });
 			moment.from(new Date('2030-03-22T23:59:59.999Z'));
 			expect(moment.date).toEqual(baseDate);
 		});
@@ -143,7 +143,7 @@ describe('Moment', () => {
 	describe('toZonedDateTime()', () => {
 		it('adjusts given input date with specified time zone', () => {
 			const baseDate = new Date('2025-03-21T23:59:59.999Z');
-			const moment = new Moment(baseDate, bounds);
+			const moment = new Moment({ targetDate: baseDate, bounds });
 			moment.toZonedDateTime('America/New_York');
 			expect(moment.date.getHours()).not.toEqual(baseDate.getHours());
 		});
