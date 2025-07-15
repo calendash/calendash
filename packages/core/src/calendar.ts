@@ -15,36 +15,45 @@ import { DATE_NAVIGATION_MODE, VIEW_NAVIGATION_MODE } from './utils/constants';
 
 export type CalendarConfig = {
 	/**
-	 * The reference date for the calendar (e.g., today or a selected date).
+	 * The initial reference date for the calendar.
+	 * Can be a `Date`, timestamp, or ISO string. Defaults to the current date if not provided.
+	 *
+	 * This date serves as the base for rendering and view generation (e.g., the "selected" date).
 	 */
-	date: DateType;
+	date?: DateType;
 
 	/**
-	 * The allowed date bounds (minimum and maximum).
-	 * This restricts navigation and selection to within this range.
+	 * Optional date boundaries to constrain navigation and selection.
+	 * Only dates within the `min` and `max` bounds will be considered valid.
 	 */
-	bounds: DateBoundsRaw;
+	bounds?: DeepPartial<DateBoundsRaw>;
 
 	/**
-	 * The initial active view of the calendar (e.g., 'day', 'week', 'month').
+	 * The initial active view for the calendar, such as `'day'`, `'week'`, `'month'`, etc.
+	 * If not specified, the first available view will be used.
 	 */
-	view: ViewType;
+	view?: ViewType;
 
 	/**
-	 * Time zone used for rendering dates.
-	 * Example: 'America/New_York', 'UTC'.
+	 * Optional IANA time zone identifier (e.g., `'America/New_York'`, `'UTC'`).
+	 * When provided, all date computations will be normalized to this time zone.
 	 */
-	timeZone: string;
+	timeZone?: string;
 
 	/**
-	 * Views that should be skipped or hidden from navigation.
+	 * A list of views to exclude from the calendar.
+	 * These views will not be rendered or navigable by the user.
+	 *
+	 * @example
+	 * skipViews: ['decade', 'year'] // Hide long-range views
 	 */
-	skipViews: ViewType[];
+	skipViews?: ViewType[];
 
 	/**
-	 * Middleware functions to manipulate returned calendar view data.
+	 * Optional middleware functions that are applied during view data generation.
+	 * These can be used to inject metadata or customize how individual cells behave.
 	 */
-	middlewares: Middleware[];
+	middlewares?: Middleware[];
 };
 
 /**
@@ -128,7 +137,7 @@ export class Calendar {
 		return !!this.#layout.getAdjacentView(-1);
 	}
 
-	constructor(config?: DeepPartial<CalendarConfig>) {
+	constructor(config?: CalendarConfig) {
 		const { date, bounds, skipViews, timeZone, view, middlewares } = config ?? {};
 		this.#moment = new Moment({ bounds, targetDate: date });
 		this.#layout = new Layout({ viewTarget: view, skipViews });
