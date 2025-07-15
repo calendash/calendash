@@ -1,6 +1,6 @@
 import type { Middleware } from '../types';
 import { ISO_DATE_REGEX } from '../utils/constants';
-import { getDayKey } from '../utils/date';
+import { getDayKey } from '../utils/helpers';
 
 export type DisableWeekendsOptions = {
 	/**

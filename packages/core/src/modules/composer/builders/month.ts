@@ -1,5 +1,11 @@
 import type { BuilderContext, Month, MonthCell } from '../../../types';
-import { isDateDisabled, isSameDay, isSameMonth, isSameWeek, createGrid } from '../../../utils';
+import {
+	isDateDisabled,
+	isSameDay,
+	isSameMonth,
+	isSameWeek,
+	createGrid,
+} from '../../../utils/helpers';
 
 export function month(ctx: BuilderContext): Month {
 	const { target, today, bounds, middlewares } = ctx;

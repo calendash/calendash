@@ -6,7 +6,8 @@ import type {
 	Direction,
 	ViewOffsets,
 } from '../../types';
-import { DATE_BOUNDARIES, adjustDateTimeZone, isWithinBounds, toDate } from '../../utils';
+import { DATE_BOUNDARIES } from '../../utils/constants';
+import { adjustDateTimeZone, isWithinBounds, toDate } from '../../utils/helpers';
 import { addOffset } from './addOffset';
 import { getAdjacentDate } from './getAdjacentDate';
 

@@ -1,4 +1,4 @@
-import { Layout } from '../../../src/helpers/layout';
+import { Layout } from '../../../src/modules/layout';
 import { VIEWS, DIRECTION_NEXT, DIRECTION_PREV } from '../../../src/utils/constants';
 
 describe('Layout', () => {

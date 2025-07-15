@@ -7,7 +7,8 @@ import type {
 	ViewData,
 	ViewType,
 } from '../../types';
-import { adjustDateTimeZone, DATE_BOUNDARIES, isPlainObject, isDate, toDate } from '../../utils';
+import { DATE_BOUNDARIES } from '../../utils/constants';
+import { adjustDateTimeZone, isPlainObject, isDate, toDate } from '../../utils/helpers';
 import { day, month, week, year, decade } from './builders';
 
 type ComposerCache<V extends ViewType> = {

@@ -1,5 +1,5 @@
 import type { BuilderContext, Year, YearCell } from '../../../types';
-import { isDateDisabled, isSameMonth, isSameYear, createGrid } from '../../../utils';
+import { isDateDisabled, isSameMonth, isSameYear, createGrid } from '../../../utils/helpers';
 
 export function year(ctx: BuilderContext): Year {
 	const { target, today, bounds, middlewares } = ctx;

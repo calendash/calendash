@@ -8,7 +8,9 @@ import type {
 	ViewData,
 	ViewType,
 } from './types';
-import { Composer, Layout, Moment } from './helpers';
+import { Composer } from './modules/composer';
+import { Layout } from './modules/layout';
+import { Moment } from './modules/moment';
 import { DATE_NAVIGATION_MODE, VIEW_NAVIGATION_MODE } from './utils/constants';
 
 export type CalendarConfig = {

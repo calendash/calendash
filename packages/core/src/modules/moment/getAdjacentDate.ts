@@ -1,5 +1,6 @@
 import type { Direction, ViewOffsets } from '../../types';
-import { DIRECTION_NEXT, DIRECTION_PREV, clamp, isInteger } from '../../utils';
+import { DIRECTION_NEXT, DIRECTION_PREV } from '../../utils/constants';
+import { clamp, isInteger } from '../../utils/helpers';
 import { dateOffsetStrategies } from './dateOffsetStrategies';
 
 /**

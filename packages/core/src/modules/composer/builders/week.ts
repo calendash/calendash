@@ -1,5 +1,5 @@
 import type { BuilderContext, Week, WeekCell } from '../../../types';
-import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../utils';
+import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../utils/helpers';
 
 export function week(ctx: BuilderContext): Week {
 	const { target, today, bounds, middlewares } = ctx;

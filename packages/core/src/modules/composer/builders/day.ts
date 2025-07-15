@@ -1,4 +1,4 @@
-import { isDateDisabled, isSameDay } from '../../../utils/date';
+import { isDateDisabled, isSameDay } from '../../../utils/helpers';
 import type { BuilderContext, Day, DayCell, Grid } from '../../../types';
 
 export function day(ctx: BuilderContext): Day {

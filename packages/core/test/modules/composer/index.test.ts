@@ -1,4 +1,4 @@
-import { Composer } from '../../../src/helpers/composer';
+import { Composer } from '../../../src/modules/composer';
 
 describe('Composer', () => {
 	const mockDate = new Date(2025, 0, 1); // Jan 1, 2025

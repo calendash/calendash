@@ -1,5 +1,6 @@
 import type { ViewType } from '../../types';
-import { DIRECTION_NEXT, DIRECTION_PREV, clamp, isInteger } from '../../utils';
+import { DIRECTION_NEXT, DIRECTION_PREV } from '../../utils/constants';
+import { clamp, isInteger } from '../../utils/helpers';
 
 /**
  * Returns the adjacent view in a given direction within a list of views.
