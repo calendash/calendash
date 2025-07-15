@@ -32,8 +32,22 @@ const dataBuilders: DataBuilders = {
 } as const;
 
 export type ComposerConfig = {
+	/**
+	 * Optional IANA time zone string (e.g., "America/New_York").
+	 * If provided, all internal date calculations will be normalized to this time zone.
+	 */
 	timeZone?: string;
+
+	/**
+	 * Optional partial object defining minimum and/or maximum date limits.
+	 * These bounds are used to validate whether dates are within the allowed range.
+	 */
 	bounds?: DeepPartial<DateBoundsRaw>;
+
+	/**
+	 * Optional array of middleware functions that can modify the generated view data.
+	 * Middleware is executed during the build process for each cell.
+	 */
 	middlewares?: Middleware[];
 };
 
@@ -51,9 +65,10 @@ export class Composer {
 	/**
 	 * Creates a new Composer instance.
 	 *
-	 * @param timeZone - Optional time zone string to normalize date inputs.
-	 * @param rawBounds - Optional object to define `min` and `max` date limits.
-	 * @param middlewares - Optional array of middleware functions to enhance or modify the context.
+	 * @param config - Optional configuration object to control time zone, bounds, and middleware.
+	 *   - `timeZone`: Normalizes all internal date values to the provided time zone.
+	 *   - `bounds`: Optional date boundaries to constrain calendar data generation.
+	 *   - `middlewares`: Optional array of functions to intercept and modify cell metadata.
 	 */
 	constructor(config?: ComposerConfig) {
 		const { timeZone, bounds, middlewares = [] } = config ?? {};

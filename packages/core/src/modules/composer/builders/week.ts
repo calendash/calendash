@@ -1,6 +1,31 @@
 import type { BuilderContext, Week, WeekCell } from '../../../types';
 import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../utils/helpers';
 
+/**
+ * Builds the "week" view representation of the calendar.
+ *
+ * This view generates a 1x7 grid of `WeekCell` objects representing the seven days
+ * of the week containing the target date. The week always starts on Sunday.
+ *
+ * Each cell is enriched with metadata such as selection state, whether it's the current day,
+ * and whether it falls outside the target week or is disabled by middleware.
+ *
+ * @param ctx - Context containing the target date, today's date, bounds, and middlewares.
+ *
+ * @returns A `Week` object with:
+ *  - `isCurrentWeek`: Indicates whether the target date falls in the current week.
+ *  - `cells`: A 1x7 grid of `WeekCell` objects representing the days in the week.
+ *
+ * @example
+ * const view = week({
+ *   target: new Date(2025, 6, 16), // Wednesday
+ *   today: new Date(),
+ *   bounds: { min: ..., max: ... },
+ *   middlewares: [...],
+ * });
+ *
+ * view.cells[0][0].day; // Sunday of that week
+ */
 export function week(ctx: BuilderContext): Week {
 	const { target, today, bounds, middlewares } = ctx;
 	const date = new Date(target.getTime());
