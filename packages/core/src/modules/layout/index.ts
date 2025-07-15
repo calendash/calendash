@@ -4,18 +4,48 @@ import { getAdjacentView } from './getAdjacentView';
 import { getVisibleViews } from './getVisibleViews';
 
 export type LayoutConfig = {
+	/**
+	 * The preferred initial view to activate (e.g., 'month', 'week', etc.).
+	 * If not provided or invalid, the first available view will be used.
+	 */
 	viewTarget?: ViewType;
+
+	/**
+	 * Optional list of views to exclude from navigation and rendering.
+	 * Must not exclude all views, or an error will be thrown.
+	 */
 	skipViews?: ViewType[];
 };
 
+/**
+ * Layout is responsible for managing the current calendar view
+ * (such as 'day', 'week', 'month', etc.) and determining which views are visible or navigable.
+ */
 export class Layout {
 	#view: ViewType;
 	readonly #visibleViews: readonly ViewType[];
 
+	/**
+	 * Returns the current active calendar view.
+	 *
+	 * @returns The currently selected view type.
+	 *
+	 * @example
+	 * layout.view; // "month"
+	 */
 	get view() {
 		return this.#view;
 	}
 
+	/**
+	 * Creates a new Layout instance.
+	 *
+	 * @param config - Optional configuration object.
+	 *   - `viewTarget`: The desired initial view to use.
+	 *   - `skipViews`: A list of views to exclude from navigation or rendering.
+	 *
+	 * @throws Will throw an error if all views are excluded via `skipViews`.
+	 */
 	constructor(config?: LayoutConfig) {
 		const { viewTarget = VIEWS[0], skipViews = [] } = config ?? {};
 		const views = getVisibleViews(skipViews);
