@@ -1,4 +1,4 @@
-import type { Bound, Direction, NavigationMode, ViewType } from '../types';
+import type { Bound, Direction, NavigationMode, NodeErrorConstructor, ViewType } from '../types';
 
 export const VIEWS: readonly ViewType[] = ['day', 'week', 'month', 'year', 'decade'] as const;
 export const BOUNDS: readonly Bound[] = ['min', 'max'] as const;
@@ -25,3 +25,4 @@ export const DATE_FORMAT_OPTS: Intl.DateTimeFormatOptions = {
 export const DATE_NAVIGATION_MODE: NavigationMode = 'date' as const;
 export const VIEW_NAVIGATION_MODE: NavigationMode = 'view' as const;
 export const ISO_DATE_REGEX: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+export const NodeError = Error as NodeErrorConstructor;

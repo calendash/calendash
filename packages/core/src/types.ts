@@ -63,6 +63,14 @@ export type DeepPartial<T> = {
 };
 
 /**
+ * Extension of the built-in `ErrorConstructor` to include the optional Node.js-specific
+ * `captureStackTrace` method.
+ */
+export interface NodeErrorConstructor extends ErrorConstructor {
+	captureStackTrace?(targetObject: object, constructorOpt?: Function): void;
+}
+
+/**
  * Input state provided to middleware functions.
  */
 export type MiddlewareState = {
@@ -93,57 +101,90 @@ export type Middleware = {
 	fn: (state: MiddlewareState) => MiddlewareReturn;
 };
 
+export interface BaseCell {
+	/**
+	 * The timestamp in milliseconds since the Unix epoch (`Date.getTime()`).
+	 * Used as a unique identifier for the cell.
+	 */
+	timestamp: number;
+
+	/**
+	 * The day of the month (1–31).
+	 */
+	dayOfMonth: number;
+
+	/**
+	 * The day of the week (0–6), where 0 = Sunday and 6 = Saturday.
+	 */
+	weekday: number;
+
+	/**
+	 * The zero-based month index (0 = January, 11 = December).
+	 */
+	monthIndex: number;
+
+	/**
+	 * The full year (e.g., 2025).
+	 */
+	year: number;
+
+	/**
+	 * Indicates whether this cell represents today's date.
+	 */
+	isCurrentDay: boolean;
+
+	/**
+	 * Indicates whether this cell falls outside the current visible calendar view.
+	 * For example, a day in a previous or next month rendered in a monthly view grid.
+	 */
+	isOutsideView: boolean;
+
+	/**
+	 * Whether the cell is currently selected.
+	 */
+	isSelected: boolean;
+
+	/**
+	 * Whether the cell is disabled due to bounds or custom middleware logic.
+	 */
+	isDisabled: boolean;
+}
+
 /**
  * Base structure for a day cell.
  */
-export type DayCell = {
-	time: number;
-	day: number;
-	dayOfWeek: number;
-	month: number;
-	year: number;
-	isSelected: boolean;
-	isDisabled: boolean;
-};
+export type DayCell = Omit<BaseCell, 'isCurrentDay' | 'isOutsideView'>;
 
 /**
- * Week cell extends DayCell with contextual flags.
+ * Represents a single day within a week view
  */
-export type WeekCell = DayCell & {
-	isCurrentDay: boolean;
-	isOutOfRange: boolean;
-};
+export type WeekCell = BaseCell;
 
 /**
- * Month cell extends WeekCell with additional flags.
+ * Represents a single day within a month view
  */
-export type MonthCell = WeekCell & {
+export type MonthCell = BaseCell & {
 	isCurrentWeek: boolean;
 };
 
 /**
  * Represents a single month within a year view.
  */
-export type YearCell = {
-	time: number;
-	month: number;
-	year: number;
+export type YearCell = Omit<
+	BaseCell,
+	'dayOfMonth' | 'weekday' | 'isCurrentDay' | 'isOutsideView'
+> & {
 	isCurrentMonth: boolean;
-	isOutOfRange: boolean;
-	isSelected: boolean;
-	isDisabled: boolean;
 };
 
 /**
  * Represents a single year within a decade view.
  */
-export type DecadeCell = {
-	time: number;
-	year: number;
+export type DecadeCell = Omit<
+	BaseCell,
+	'dayOfMonth' | 'weekday' | 'monthIndex' | 'isCurrentDay'
+> & {
 	isCurrentYear: boolean;
-	isOutOfRange: boolean;
-	isSelected: boolean;
-	isDisabled: boolean;
 };
 
 /**
