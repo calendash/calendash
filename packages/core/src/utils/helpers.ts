@@ -79,31 +79,27 @@ function createAdjustDateTimeZone() {
 	 * adjustTimeZone(date, 'America/New_York'); // Returns the date and time in the New York time zone
 	 */
 	return function (date: Date, timeZone: string): Date {
-		try {
-			let formatter = formatterCache.get(timeZone);
-			if (!formatter) {
-				formatter = new Intl.DateTimeFormat('en-US', {
-					...DATE_FORMAT_OPTS,
-					timeZone,
-				});
-				setWithLimit(timeZone, formatter);
-			}
-
-			const parts = formatter.formatToParts(date);
-			const entries = parts.map(({ type, value }) => [type, value]);
-			const { year, month, day, hour, minute, second } = Object.fromEntries(entries);
-
-			return new Date(
-				+year,
-				+month - 1, // Set month index
-				+day,
-				hour === '24' ? 0 : +hour, // Normalize 24 hour string
-				+minute,
-				+second
-			);
-		} catch (error) {
-			throw error;
+		let formatter = formatterCache.get(timeZone);
+		if (!formatter) {
+			formatter = new Intl.DateTimeFormat('en-US', {
+				...DATE_FORMAT_OPTS,
+				timeZone,
+			});
+			setWithLimit(timeZone, formatter);
 		}
+
+		const parts = formatter.formatToParts(date);
+		const entries = parts.map(({ type, value }) => [type, value]);
+		const { year, month, day, hour, minute, second } = Object.fromEntries(entries);
+
+		return new Date(
+			+year,
+			+month - 1, // Set month index
+			+day,
+			hour === '24' ? 0 : +hour, // Normalize 24 hour string
+			+minute,
+			+second
+		);
 	};
 }
 
@@ -114,7 +110,7 @@ export const adjustDateTimeZone = createAdjustDateTimeZone();
  *
  * @param value The value to be converted. Can be a `Date`, `string`, or `number`.
  * @returns A valid `Date` object.
- * @throws If the value is an invalid date or an unsupported type.
+ * @throws {Error} If the value is an invalid date or an unsupported type.
  *
  * @example
  * toDate('2025-03-21'); // Returns a Date object representing March 21, 2025
@@ -125,14 +121,12 @@ export const adjustDateTimeZone = createAdjustDateTimeZone();
 export function toDate(value: unknown): Date {
 	if (isDate(value)) return value;
 	if (typeof value !== 'string' && typeof value !== 'number') {
-		// TODO: Create dedicated exception
 		throw new Error('Unsupported type for Date conversion. Expected string or number.');
 	}
 
 	const date = new Date(value);
 	if (isNaN(date.getTime())) {
-		// TODO: Create dedicated exception
-		throw new Error('Invalid date input. Could not convert to Date object.');
+		throw new Error('Could not convert to Date object.');
 	}
 
 	return date;
