@@ -1,9 +1,27 @@
-export { Calendar, type CalendarConfig } from './calendar';
-export { Composer, type ComposerConfig } from './modules/composer';
-export { Layout, type LayoutConfig } from './modules/layout';
-export { Moment, type MomentConfig } from './modules/moment';
-export { disableDates, type DisableDatesOptions } from './middlewares/disableDates';
-export { disableWeekends, type DisableWeekendsOptions } from './middlewares/disableWeekends';
+export {
+	Calendar,
+	CalendarError,
+	CalendarErrorCode,
+	type CalendarConfig,
+	Composer,
+	ComposerError,
+	ComposerErrorCode,
+	type ComposerConfig,
+	Layout,
+	LayoutError,
+	LayoutErrorCode,
+	type LayoutConfig,
+	Moment,
+	MomentError,
+	MomentErrorCode,
+	type MomentConfig,
+} from './features/calendar';
+export {
+	disableDates,
+	type DisableDatesOptions,
+	disableWeekends,
+	type DisableWeekendsOptions,
+} from './middlewares';
 export type {
 	Bound,
 	BuilderContext,
