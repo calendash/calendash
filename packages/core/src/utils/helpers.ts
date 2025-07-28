@@ -255,43 +255,40 @@ export function isSameYear(date1: Date, date2: Date): boolean {
  * @example
  * getDayKey(new Date(2025, 6, 3)); // '2025-07-03'
  */
-export const getDayKey = (date: Date): string => {
+export function getDayKey(date: Date): string {
 	const year = date.getFullYear();
 	const month = String(date.getMonth() + 1).padStart(2, '0');
 	const day = String(date.getDate()).padStart(2, '0');
 	return `${year}-${month}-${day}`;
-};
+}
 
 /**
  * Determines whether a given date should be marked as disabled.
  *
  * This function checks two conditions:
  * 1. Whether the date falls outside the specified bounds.
- * 2. Whether any of the provided middleware functions (whose names start with "disable")
- *    return a result indicating that the date is disabled.
+ * 2. Whether the disable middleware is provided to apply custom rules to disable target date.
  *
  * @param date - The date to evaluate.
  * @param bounds - The valid date range (`min` and `max`) used to restrict selection.
- * @param middlewares - Optional array of middleware functions that may apply custom rules to disable dates.
+ * @param disableMiddleware - Optional middleware object with function that may apply custom rules to disable target date.
  *
- * @returns `true` if the date is outside the bounds or marked as disabled by a middleware; otherwise, `false`.
+ * @returns `true` if the date is outside the bounds or marked as disabled by the provided middleware; otherwise, `false`.
  *
  * @example
  * const disabled = isDateDisabled(new Date(), bounds, [
- *   { name: 'disableWeekends', fn: ({ date }) => ({ data: { isDisabled: isWeekend(date) } }) }
+ *   { name: 'disable', fn: ({ date }) => ({ data: { isDisabled: isWeekend(date) } }) }
  * ]);
  */
 export function isDateDisabled(
 	date: Date,
 	bounds: DateBounds,
-	middlewares: Middleware[] = []
+	disableMiddleware?: Middleware
 ): boolean {
 	if (!isWithinBounds(date, bounds)) return true;
 
-	for (const mw of middlewares) {
-		if (mw.name.startsWith('disable') && mw.fn({ date }).data?.isDisabled) {
-			return true;
-		}
+	if (disableMiddleware && disableMiddleware.name === 'disable') {
+		return Boolean(disableMiddleware.fn({ date }).data?.isDisabled);
 	}
 
 	return false;
@@ -354,6 +351,22 @@ export function createGrid<T>(
  */
 export function isPlainObject(value: unknown): value is Record<string | number | symbol, unknown> {
 	return !!value && typeof value === 'object' && Object.getPrototypeOf(value) === Object.prototype;
+}
+
+/**
+ * Checks if the given value is a valid Middleware object.
+ *
+ * @param value The value to be checked.
+ * @returns `true` if the input is a valid Middleware object, otherwise `false`.
+ *
+ * @example
+ * isMiddleware({ name: 'disableDate', fn: () => ({}) }); // true
+ * isMiddleware({ fn: () => ({}) }); // false
+ * isMiddleware({ name: 'disableDate' }); // false
+ * isMiddleware({}); // false
+ */
+export function isMiddleware(value: unknown): value is Middleware {
+	return isPlainObject(value) && typeof value.name === 'string' && typeof value.fn === 'function';
 }
 
 //-----------------------------------------------

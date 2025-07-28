@@ -19,13 +19,13 @@ import { isDateDisabled, isSameMonth, isSameYear, createGrid } from '../../../..
  *   target: new Date(2025, 3, 1), // Any date in 2025
  *   today: new Date(),
  *   bounds: { min: ..., max: ... },
- *   middlewares: [...],
+ *   disableMiddleware: { name: ..., fn: ... },
  * });
  *
  * view.cells[0][0].month; // 0 (January)
  */
 export function year(ctx: BuilderContext): Year {
-	const { target, today, bounds, middlewares } = ctx;
+	const { target, today, bounds, disableMiddleware } = ctx;
 	const current = new Date(target.getTime());
 	const yearCells = createGrid<YearCell>(4, 3, (i, j) => {
 		const monthIndex = i * 3 + j;
@@ -36,7 +36,7 @@ export function year(ctx: BuilderContext): Year {
 			year: current.getFullYear(),
 			isCurrentMonth: isSameMonth(current, today),
 			isSelected: isSameMonth(current, target),
-			isDisabled: isDateDisabled(current, bounds, middlewares),
+			isDisabled: isDateDisabled(current, bounds, disableMiddleware),
 		} satisfies YearCell;
 	});
 

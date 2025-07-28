@@ -8,7 +8,7 @@ import { isDateDisabled, isSameDecade, isSameYear, createGrid } from '../../../.
  * centered around the target year. Each cell represents a year, enriched with flags
  * for selection, range, and disabled state.
  *
- * @param ctx - Context containing the target date, today's date, bounds, and middlewares.
+ * @param ctx - Context containing the target date, today's date, bounds, and disableMiddleware.
  *
  * @returns A `Decade` object with:
  *  - `isCurrentDecade`: Indicates if the target decade is the same as today's decade.
@@ -19,13 +19,13 @@ import { isDateDisabled, isSameDecade, isSameYear, createGrid } from '../../../.
  *   target: new Date(2025, 0, 1),
  *   today: new Date(),
  *   bounds: { min: ..., max: ... },
- *   middlewares: [...],
+ *   disableMiddleware: { name: ..., fn: ... },
  * });
  *
  * view.cells[0][0].year; // 2020 (if 2025 is the target year)
  */
 export function decade(ctx: BuilderContext): Decade {
-	const { target, today, bounds, middlewares } = ctx;
+	const { target, today, bounds, disableMiddleware } = ctx;
 	const startYear = Math.floor(target.getFullYear() / 10) * 10;
 	const current = new Date(target.getTime());
 	const decadeCells = createGrid<DecadeCell>(4, 3, (i, j) => {
@@ -37,7 +37,7 @@ export function decade(ctx: BuilderContext): Decade {
 			isCurrentYear: isSameYear(current, today),
 			isOutsideView: !isSameDecade(current, target),
 			isSelected: isSameYear(current, target),
-			isDisabled: isDateDisabled(current, bounds, middlewares),
+			isDisabled: isDateDisabled(current, bounds, disableMiddleware),
 		} satisfies DecadeCell;
 	});
 

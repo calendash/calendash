@@ -8,7 +8,7 @@ import type { BuilderContext, Day, DayCell, Grid } from '../../../../../types';
  * such as day of the week, selection state, and whether the date is disabled.
  * It also indicates whether the target date matches "today".
  *
- * @param ctx - Context containing the target date, today's date, bounds, and middlewares.
+ * @param ctx - Context containing the target date, today's date, bounds, and disableMiddleware.
  *
  * @returns A `Day` object with:
  *  - `isCurrentDay`: Indicates if the target date is the same as today's date.
@@ -19,13 +19,13 @@ import type { BuilderContext, Day, DayCell, Grid } from '../../../../../types';
  *   target: new Date(2025, 0, 1),
  *   today: new Date(),
  *   bounds: { min: ..., max: ... },
- *   middlewares: [...],
+ *   disableMiddleware: { name: ..., fn: ... },
  * });
  *
  * view.cells[0][0].day; // 1
  */
 export function day(ctx: BuilderContext): Day {
-	const { target, today, bounds, middlewares } = ctx;
+	const { target, today, bounds, disableMiddleware } = ctx;
 	const cell: Grid<DayCell> = [
 		[
 			{
@@ -35,7 +35,7 @@ export function day(ctx: BuilderContext): Day {
 				monthIndex: target.getMonth(),
 				year: target.getFullYear(),
 				isSelected: true,
-				isDisabled: isDateDisabled(target, bounds, middlewares),
+				isDisabled: isDateDisabled(target, bounds, disableMiddleware),
 			},
 		],
 	];

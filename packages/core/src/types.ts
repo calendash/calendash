@@ -251,6 +251,6 @@ export type BuilderContext = {
 	/** Allowed date boundaries used to disable or restrict cells. */
 	bounds: DateBounds;
 
-	/** Middleware functions applied during the build process. */
-	middlewares: Middleware[];
+	/** Disable date middleware function applied during the build process. */
+	disableMiddleware?: Middleware;
 };

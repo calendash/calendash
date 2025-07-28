@@ -10,7 +10,7 @@ import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../../.
  * Each cell is enriched with metadata such as selection state, whether it's the current day,
  * and whether it falls outside the target week or is disabled by middleware.
  *
- * @param ctx - Context containing the target date, today's date, bounds, and middlewares.
+ * @param ctx - Context containing the target date, today's date, bounds, and disableMiddleware.
  *
  * @returns A `Week` object with:
  *  - `isCurrentWeek`: Indicates whether the target date falls in the current week.
@@ -21,13 +21,13 @@ import { isDateDisabled, isSameDay, isSameWeek, createGrid } from '../../../../.
  *   target: new Date(2025, 6, 16), // Wednesday
  *   today: new Date(),
  *   bounds: { min: ..., max: ... },
- *   middlewares: [...],
+ *   disableMiddleware: { name: ..., fn: ... },
  * });
  *
  * view.cells[0][0].day; // Sunday of that week
  */
 export function week(ctx: BuilderContext): Week {
-	const { target, today, bounds, middlewares } = ctx;
+	const { target, today, bounds, disableMiddleware } = ctx;
 	const date = new Date(target.getTime());
 	date.setDate(date.getDate() - date.getDay());
 
@@ -43,7 +43,7 @@ export function week(ctx: BuilderContext): Week {
 			isCurrentDay: isSameDay(current, today),
 			isOutsideView: !isSameWeek(current, target),
 			isSelected: isSameDay(target, current),
-			isDisabled: isDateDisabled(current, bounds, middlewares),
+			isDisabled: isDateDisabled(current, bounds, disableMiddleware),
 		} satisfies WeekCell;
 	});
 

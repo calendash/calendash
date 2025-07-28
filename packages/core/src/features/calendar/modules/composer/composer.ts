@@ -8,7 +8,13 @@ import type {
 	ViewType,
 } from '../../../../types';
 import { DATE_BOUNDARIES } from '../../../../utils/constants';
-import { adjustDateTimeZone, isPlainObject, isDate, toDate } from '../../../../utils/helpers';
+import {
+	adjustDateTimeZone,
+	isPlainObject,
+	isDate,
+	toDate,
+	isMiddleware,
+} from '../../../../utils/helpers';
 import { day, month, week, year, decade } from './internal';
 import { ComposerError, ComposerErrorCode } from './composer.error';
 
@@ -23,14 +29,6 @@ type BuilderHandler<V extends ViewType> = (ctx: BuilderContext) => ViewData[V];
 type DataBuilders = {
 	[V in ViewType]: BuilderHandler<V>;
 };
-
-const dataBuilders: DataBuilders = {
-	day,
-	week,
-	month,
-	year,
-	decade,
-} as const;
 
 export type ComposerConfig = {
 	/**
@@ -52,6 +50,18 @@ export type ComposerConfig = {
 	middlewares?: Middleware[];
 };
 
+type MiddlewareRegistry = {
+	disable?: Middleware;
+};
+
+const dataBuilders: DataBuilders = {
+	day,
+	week,
+	month,
+	year,
+	decade,
+} as const;
+
 /**
  * The Composer class is responsible for generating calendar view data
  * (e.g. day, week, month, year, decade) using appropriate builder strategies.
@@ -61,7 +71,7 @@ export class Composer {
 	#cache: ComposerCache<ViewType> | null = null;
 	readonly #today: Date;
 	readonly #bounds: DateBounds;
-	readonly #middlewares: Middleware[];
+	readonly #middlewares: MiddlewareRegistry;
 
 	/**
 	 * Creates a new Composer instance.
@@ -88,7 +98,15 @@ export class Composer {
 				`Invalid date or timezone provided: ${error instanceof Error ? error.message : String(error)}`
 			);
 		}
-		this.#middlewares = middlewares.filter((mdw): mdw is Middleware => isPlainObject(mdw));
+		this.#middlewares = middlewares.reduce((acc, mw) => {
+			if (isMiddleware(mw)) {
+				return {
+					...acc,
+					[mw.name]: mw,
+				};
+			}
+			return acc;
+		}, {} as MiddlewareRegistry);
 	}
 
 	/**
@@ -131,7 +149,7 @@ export class Composer {
 					target,
 					today: this.#today,
 					bounds: this.#bounds,
-					middlewares: this.#middlewares,
+					disableMiddleware: this.#middlewares.disable,
 				}),
 			};
 		}

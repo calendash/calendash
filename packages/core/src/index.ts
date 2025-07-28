@@ -16,12 +16,7 @@ export {
 	MomentErrorCode,
 	type MomentConfig,
 } from './features/calendar';
-export {
-	disableDates,
-	type DisableDatesOptions,
-	disableWeekends,
-	type DisableWeekendsOptions,
-} from './middlewares';
+export { disable, type DisableOptions } from './middlewares';
 export type {
 	Bound,
 	BuilderContext,
