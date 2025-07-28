@@ -17,8 +17,8 @@ export type DisableOptions = {
 	weekends?: boolean;
 
 	/**
-	 * Dates to exclude from being disabled,
-	 * even if listed in `dates` or fall on a weekend.
+	 * Dates to skip when disabling weekends.
+	 * Only applies if `weekends` is set to `true`.
 	 */
 	exclude?: string[];
 };
