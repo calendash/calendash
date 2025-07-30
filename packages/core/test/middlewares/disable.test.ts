@@ -35,18 +35,26 @@ describe('disable()', () => {
 		expect(options).toEqual({
 			weekends: true,
 		});
+
+		// Check Saturday day
 		expect(fn({ date: new Date('2025-07-26T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: true },
-		}); // Saturday
+		});
+
+		// Check Sunday day
 		expect(fn({ date: new Date('2025-06-08T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: true },
-		}); // Sunday
+		});
+
+		// Check Saturday day
 		expect(fn({ date: new Date('2025-05-31T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: true },
-		}); // Saturday
+		});
+
+		// Check Friday day
 		expect(fn({ date: new Date('2025-04-04T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: false },
-		}); // Friday
+		});
 	});
 
 	it('returns a middleware with name and options, and correctly disables weekends excluding specific dates', () => {
@@ -59,17 +67,25 @@ describe('disable()', () => {
 			weekends: true,
 			exclude: ['2025-06-08', '2025-07-26'],
 		});
+
+		// Check Saturday excluded day
 		expect(fn({ date: new Date('2025-07-26T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: false },
-		}); // Saturday
+		});
+
+		// Check Sunday excluded day
 		expect(fn({ date: new Date('2025-06-08T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: false },
-		}); // Sunday
+		});
+
+		// Check Saturday day
 		expect(fn({ date: new Date('2025-05-31T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: true },
-		}); // Saturday
+		});
+
+		// Check Sunday day
 		expect(fn({ date: new Date('2025-04-06T12:00:00.000Z') })).toEqual({
 			data: { isDisabled: true },
-		}); // Sunday
+		});
 	});
 });
