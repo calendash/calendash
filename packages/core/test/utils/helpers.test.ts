@@ -215,10 +215,10 @@ describe('Helper functions', () => {
 			const disableMiddleware = {
 				fn: () => ({ data: { isDisabled: true } }),
 			};
-			// @ts-ignore
 			const result = isDateDisabled(
 				new Date('2025-12-31T10:00:00.999Z'),
 				bounds,
+				// @ts-ignore
 				disableMiddleware
 			);
 			expect(result).toBe(false);
