@@ -27,7 +27,7 @@ describe('Composer', () => {
 			});
 		});
 
-		test('throws error if invalid time zone is provided', () => {
+		it('throws error if invalid time zone is provided', () => {
 			const tz = 'invalid-timeZone';
 			const createComposer = () => new Composer({ timeZone: tz });
 			expect(createComposer).toThrow(
@@ -38,7 +38,7 @@ describe('Composer', () => {
 			);
 		});
 
-		test('throws error if invalid bounds are provided', () => {
+		it('throws error if invalid bounds are provided', () => {
 			const createComposer = () => new Composer({ bounds: { min: 'invalid-date' } });
 			expect(createComposer).toThrow(
 				new ComposerError(
