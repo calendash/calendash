@@ -50,6 +50,13 @@ describe('Calendar', () => {
 				});
 		});
 
+		it('initializes with specified time zone', () => {
+			const date = new Date('2025-03-24T12:00:00.000Z');
+			const calendar = new Calendar({ date, timeZone: 'America/New_York' });
+			expect(calendar.target).toBeInstanceOf(Date);
+			expect(calendar.target).not.toEqual(date);
+		});
+
 		it('throws error if invalid date is provided', () => {
 			expect(() => new Calendar({ date: 'invalid-date' })).toThrow(
 				new MomentError(
