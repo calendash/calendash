@@ -123,7 +123,7 @@ export class Composer {
 		if (!isDate(target)) {
 			throw new ComposerError(
 				ComposerErrorCode.INVALID_DATE,
-				'Target date must be a valid Date object'
+				'Target date must be a valid Date object.'
 			);
 		}
 
