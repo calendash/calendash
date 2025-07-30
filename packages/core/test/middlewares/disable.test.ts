@@ -1,4 +1,4 @@
-import { disable } from '../../src/middlewares/disable';
+import { disable } from '../../src/middlewares';
 
 describe('disable()', () => {
 	it('returns middleware object with correct properties', () => {
