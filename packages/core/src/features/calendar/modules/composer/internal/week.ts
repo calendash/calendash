@@ -41,7 +41,6 @@ export function week(ctx: BuilderContext): Week {
 			monthIndex: current.getMonth(),
 			year: current.getFullYear(),
 			isCurrentDay: isSameDay(current, today),
-			isOutsideView: !isSameWeek(current, target),
 			isSelected: isSameDay(target, current),
 			isDisabled: isDateDisabled(current, bounds, disableMiddleware),
 		} satisfies WeekCell;

@@ -158,7 +158,7 @@ export type DayCell = Omit<BaseCell, 'isCurrentDay' | 'isOutsideView'>;
 /**
  * Represents a single day within a week view
  */
-export type WeekCell = BaseCell;
+export type WeekCell = Omit<BaseCell, 'isOutsideView'>;
 
 /**
  * Represents a single day within a month view
