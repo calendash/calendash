@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
           
       - name: Setup Node & pnpm environment
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/pnpm-setup
 
       - name: Run lint for all packages
         run: pnpm run lint
@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 0
         
       - name: Setup Node & pnpm environment
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/pnpm-setup
 
       - name: Run tests for all packages
         run: pnpm run test
@@ -51,7 +51,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node & pnpm environment
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/pnpm-setup
 
       - name: Run build for all packages
         run: pnpm run build
