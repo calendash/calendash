@@ -1,12 +1,12 @@
 ---
-name: ✨ Feature Request
+name: Feature Request
 about: Suggest a new feature, improvement, or enhancement
 title: "[Feature]: <clear and descriptive title>"
 labels: [enhancement]
 assignees: ''
 ---
 
-## 📌 Problem Statement
+## Problem Statement
 
 Is your feature request motivated by a specific problem or use case?  
 Clearly describe the need it addresses and why it matters.
@@ -15,7 +15,7 @@ Clearly describe the need it addresses and why it matters.
 
 ---
 
-## ✅ Proposed Solution
+## Proposed Solution
 
 Describe the ideal solution or behavior.  
 Include any relevant technical or UI/UX details.
@@ -25,14 +25,14 @@ Include any relevant technical or UI/UX details.
 
 ---
 
-## 🔁 Considered Alternatives
+## Considered Alternatives
 
 Have you explored other approaches or workarounds?  
 Explain why they weren't sufficient or ideal.
 
 ---
 
-## 📋 Acceptance Criteria *(Optional)*
+## Acceptance Criteria *(Optional)*
 
 Define what must be true for this feature to be considered complete.
 
@@ -44,14 +44,14 @@ Define what must be true for this feature to be considered complete.
 
 ---
 
-## 🖼️ Additional Context *(Optional)*
+## Additional Context *(Optional)*
 
 Include any supporting content such as design mockups, wireframes, diagrams, or examples.
 
 ---
 
 <details>
-<summary>📚 References *(Optional)*</summary>
+<summary>References *(Optional)*</summary>
 
 - Related issues or pull requests
 - External tools or libraries with similar features

@@ -1,33 +1,33 @@
 ---
-name: 🧹 Refactor / Code Cleanup
+name: Refactor / Code Cleanup
 about: Propose code improvements that do not alter functionality
 title: "[Refactor]: <clear and descriptive title>"
 labels: [refactor]
 assignees: ''
 ---
 
-## 📍 Scope of Refactor
+## Scope of Refactor
 
 Specify the area(s) of the codebase this refactor applies to:  
 > Include file names, modules, components, functions, or architectural layers.
 
 ---
 
-## 💡 Motivation
+## Motivation
 
 What is the rationale for this refactor?  
 > Common reasons: technical debt, code readability, performance bottlenecks, testability, separation of concerns, or architectural consistency.
 
 ---
 
-## 🎯 Objective
+## Objective
 
 Describe the intended result or improvement of the refactor.  
 > What should become easier, cleaner, or more aligned with best practices—**without changing current behavior**?
 
 ---
 
-## 📊 Benefits and Impact *(Optional but encouraged)*
+## Benefits and Impact *(Optional but encouraged)*
 
 Check all that apply, or describe others:
 
@@ -40,7 +40,7 @@ Check all that apply, or describe others:
 
 ---
 
-## ⚠️ Risks or Dependencies
+## Risks or Dependencies
 
 Are there any potential risks, blockers, or constraints?
 
@@ -50,14 +50,14 @@ Are there any potential risks, blockers, or constraints?
 
 ---
 
-## 📎 Additional Context
+## Additional Context
 
 Include links to design documents, code style guides, discussions, or architectural decisions that support the refactor.
 
 ---
 
 <details>
-<summary>💡 Before / After Code Example *(Optional)*</summary>
+<summary>Before / After Code Example *(Optional)*</summary>
 
 ```ts
 // Before

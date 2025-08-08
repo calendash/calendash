@@ -1,4 +1,4 @@
-# 📦 Pull Request Title
+# Pull Request Title
 
 > Provide a clear, descriptive title that summarizes the change.
 > Examples:
@@ -7,32 +7,32 @@
 
 ---
 
-## 📝 Summary
+## Summary
 
 > Briefly describe **what** this pull request does and **why** it is necessary.
 > Focus on the problem being solved or the feature being introduced.
 
 ---
 
-## 📂 Type of Change
+## Type of Change
 
 > Select the type(s) of change this PR introduces (mark with `x`):
 
-- [ ] 🐛 Bug fix (fixes an existing issue)
-- [ ] ✨ New feature (adds functionality)
-- [ ] 🔧 Code refactor (no functional changes)
-- [ ] 📚 Documentation update
-- [ ] 🧪 Test coverage improvement
-- [ ] 🎨 Code style / formatting changes
-- [ ] 🚀 CI/CD or workflow changes
-- [ ] 🧹 Maintenance / chore (e.g. tooling, config)
-- [ ] ⚡️ Performance optimization
-- [ ] 🗑 Revert changes
-- [ ] 🧱 Dependency / build system update
+- [ ] Bug fix (fixes an existing issue)
+- [ ] New feature (adds functionality)
+- [ ] Code refactor (no functional changes)
+- [ ] Documentation update
+- [ ] Test coverage improvement
+- [ ] Code style / formatting changes
+- [ ] CI/CD or workflow changes
+- [ ] Maintenance / chore (e.g. tooling, config)
+- [ ] Performance optimization
+- [ ] Revert changes
+- [ ] Dependency / build system update
 
 ---
 
-## ✅ Checklist
+## Checklist
 
 > Confirm the following before requesting review:
 
@@ -47,7 +47,7 @@
 
 ---
 
-## 🔗 Related Issues
+## Related Issues
 
 > Reference any related issues, if applicable:
 > - Closes #123
@@ -56,7 +56,7 @@
 
 ---
 
-## 🧪 Test Plan
+## Test Plan
 
 > Describe how the changes were tested.
 
@@ -68,7 +68,7 @@
 
 ---
 
-## 🧨 Breaking Changes
+## Breaking Changes
 
 > Does this PR introduce any breaking changes?
 
@@ -77,12 +77,12 @@
 
 ---
 
-## 📸 Screenshots or Recordings *(if applicable)*
+## Screenshots or Recordings *(if applicable)*
 
 > Add UI screenshots, screen recordings, or gifs to help reviewers understand visual changes.
 
 ---
 
-## 💬 Reviewer Notes
+## Reviewer Notes
 
 > Include any additional context, known issues, limitations, or areas you'd like reviewers to focus on.
