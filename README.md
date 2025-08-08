@@ -22,12 +22,12 @@ This monorepo is managed with [pnpm workspaces](https://pnpm.io/workspaces) and 
 
 ## Code of conduct
 
-Please review and follow our [code of conduct](https://github.com/calendash/calendash/blob/master/CODE_OF_CONDUCT.md).
+Please review and follow our [code of conduct](./CODE_OF_CONDUCT.md).
 
 ## Contributing
 
-Please read our [contribution guidelines](https://github.com/calendash/calendash/blob/master/CONTRIBUTING.md) for more information on how to get started.
+Please read our [contribution guidelines](./CONTRIBUTING.md) for more information on how to get started.
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/calendash/calendash/blob/master/LICENSE)
+This project is licensed under the [MIT License](./LICENSE)
