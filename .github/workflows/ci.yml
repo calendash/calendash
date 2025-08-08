@@ -1,0 +1,58 @@
+name: Lint, Test & Build Projects (CI)
+
+on:
+  push:
+    branches: ["**"]
+
+concurrency:
+  group: ci-workflow-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node & pnpm environment
+        uses: ./.github/actions/setup
+
+      - name: Run lint for all packages
+        run: pnpm run lint
+        shell: bash
+
+  test:
+    name: Test Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        
+      - name: Setup Node & pnpm environment
+        uses: ./.github/actions/setup
+
+      - name: Run tests for all packages
+        run: pnpm run test
+        shell: bash
+  
+  build:
+    name: Build Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node & pnpm environment
+        uses: ./.github/actions/setup
+
+      - name: Run build for all packages
+        run: pnpm run build
+        shell: bash
