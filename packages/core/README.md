@@ -74,7 +74,7 @@ Create a calendar instance and navigate through views and dates:
   calendar.jumpToDate(new Date('2020-03-24T12:00:00.000Z'))
 ```
 
-Learn more about the `Calendar` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/features/calendar/README.md).
+Learn more about the `Calendar` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/src/features/calendar/README.md).
 
 ## Internal modules
 
@@ -98,7 +98,7 @@ A timezone-aware date utility layer that abstracts native Date quirks. It handle
   moment.from('2020-03-24T12:00:00.000Z'); // Updates the internal date to March 24, 2020
 ```
 
-Learn more about the `Moment` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/features/calendar/modules/moment/README.md).
+Learn more about the `Moment` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/src/features/calendar/modules/moment/README.md).
 
 ### Layout class
 
@@ -115,7 +115,7 @@ Responsible for determining the view of the calendar by processing the skipped v
   layout.getAdjacentView(1); // Returns the next view type (e.g., "week")
 ```
 
-Learn more about the `Layout` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/features/calendar/modules/layout/README.md).
+Learn more about the `Layout` class and its customization options in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/src/features/calendar/modules/layout/README.md).
 
 ### Composer class
 
@@ -141,7 +141,7 @@ Generates structured calendar data for the specified view (day, week, month, yea
   });
 ```
 
-Learn more about the `Composer` class and its customization options & view data structure in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/features/calendar/modules/composer/README.md).
+Learn more about the `Composer` class and its customization options & view data structure in the [API reference](https://github.com/calendash/calendash/blob/master/packages/core/src/features/calendar/modules/composer/README.md).
 
 ## Middlewares
 
