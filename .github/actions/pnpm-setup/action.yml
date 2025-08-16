@@ -1,15 +1,15 @@
-name: Setup Node, pnpm and Cache
-description: "Setup repo checkout, Node, pnpm and restore cache + install dependencies"
+name: 'Setup Node, pnpm and Cache'
+description: 'Setup repo checkout, Node, pnpm and restore cache + install dependencies'
 
 runs:
   using: composite
   steps:
-    - name: Setup pnpm
+    - name: 'Setup pnpm'
       uses: pnpm/action-setup@v4
       with:
         run_install: false
 
-    - name: Setup Node.js with pnpm cache
+    - name: 'Setup Node.js with pnpm cache'
       uses: actions/setup-node@v4
       with:
         node-version: 22
@@ -17,7 +17,7 @@ runs:
         cache: 'pnpm'
         scope: '@calendash'
 
-    - name: Restore pnpm cache
+    - name: 'Restore pnpm cache'
       uses: actions/cache@v4
       with:
         path: |
@@ -26,7 +26,7 @@ runs:
         restore-keys: |
           ${{ runner.os }}-pnpm-
 
-    - name: Install dependencies
+    - name: 'Install dependencies'
       if: steps.cache.outputs.cache-hit != 'true'
       run: pnpm install
       shell: bash
