@@ -1,0 +1,52 @@
+name: 'Publish library to NPM'
+
+on:
+  push:
+    tags: ["**"]
+
+jobs:
+  validate-tag:
+    name: 'Validate tag pattern'
+    runs-on: ubuntu-latest
+    outputs:
+      should-publish: ${{ steps.validate.outputs.should-continue }}
+    steps:
+      - name: 'Checkout repository code'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+        
+      - name: 'Validate tag format'
+        id: validate
+        uses: ./.github/actions/validate-tag
+
+  publish:
+    name: 'Publish ${{ github.ref_name }} to NPM'
+    needs: validate-tag
+    if: needs.validate-tag.outputs.should-publish == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: 'Checkout repository code'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+        
+      - name: 'Setup Node & pnpm environment'
+        uses: ./.github/actions/pnpm-setup
+
+      - name: 'Configure Git user and GPG signing'
+        uses: ./.github/actions/git-config
+        with:
+          gpgPrivId: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpgKeyId: ${{ secrets.GPG_KEY_ID }}
+          gpgPassphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: 'Run publish script'
+        run: pnpm run publish --tag ${{ github.ref_name }}
+        shell: bash
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
