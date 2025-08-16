@@ -7,6 +7,27 @@
   "workspaceLayout": {
     "libsDir": "packages"
   },
+  "release": {
+    "projects": [
+      "packages/*"
+    ],
+    "projectsRelationship": "independent",
+    "releaseTagPattern": "{projectName}@{version}",
+    "version": {
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": {
+        "createRelease": "github",
+        "renderOptions": {
+          "authors": false,
+          "applyUsernameToAuthors": false,
+          "commitReferences": true,
+          "versionTitleDate": true
+        }
+      }
+    }
+  },
   "namedInputs": {
     "default": [
       "{projectRoot}/**/*",
