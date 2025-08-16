@@ -11,6 +11,8 @@
     "build": "nx run-many --target build",
     "test": "nx run-many --target test",
     "lint": "nx run-many --target lint",
+    "release": "node ./scripts/release.js --verbose",
+    "publish": "node ./scripts/publish.js --verbose",
     "publish:mock": "node ./scripts/publish.js --verbose --dryRun --tag=core@1.0.0",
     "release:mock": "node ./scripts/release.js --verbose --dryRun --packages core --specifier major",
     "prepare": "husky"
