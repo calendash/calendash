@@ -1,4 +1,4 @@
-name: Lint, Test & Build Projects (CI)
+name: 'Lint, test & build monorepo (CI)'
 
 on:
   push:
@@ -10,49 +10,49 @@ concurrency:
 
 jobs:
   lint:
-    name: Lint Packages
+    name: 'Lint packages'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository code
+      - name: 'Checkout repository code'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           
-      - name: Setup Node & pnpm environment
+      - name: 'Setup Node & pnpm environment'
         uses: ./.github/actions/pnpm-setup
 
-      - name: Run lint for all packages
+      - name: 'Run lint for all packages'
         run: pnpm run lint
         shell: bash
 
   test:
-    name: Test Packages
+    name: 'Test packages'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository code
+      - name: 'Checkout repository code'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
         
-      - name: Setup Node & pnpm environment
+      - name: 'Setup Node & pnpm environment'
         uses: ./.github/actions/pnpm-setup
 
-      - name: Run tests for all packages
+      - name: 'Run tests for all packages'
         run: pnpm run test
         shell: bash
   
   build:
-    name: Build Packages
+    name: 'Build packages'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository code
+      - name: 'Checkout repository code'
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Node & pnpm environment
+      - name: 'Setup Node & pnpm environment'
         uses: ./.github/actions/pnpm-setup
 
-      - name: Run build for all packages
+      - name: 'Run build for all packages'
         run: pnpm run build
         shell: bash
