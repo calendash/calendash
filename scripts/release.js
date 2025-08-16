@@ -150,11 +150,6 @@ const { argv } = yargs(hideBin(process.argv))
 		description: 'List of packages to be released',
 		type: 'array',
 		default: [],
-	})
-	.option('defaultBranch', {
-		description: 'Default repository branch',
-		type: 'string',
-		default: 'master',
 	});
 
 run(argv);
