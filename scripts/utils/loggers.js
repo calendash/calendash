@@ -39,7 +39,7 @@ const { chalk, echo } = require('zx');
  *
  * @typedef {object} ResultsOptions
  * @property {string} tag - The version tag.
- * @property {string} packageName - The package name.
+ * @property {string} projectName - The project name.
  * @property {boolean} dryRun - Whether to run in dry-run mode.
  * @property {boolean} verbose - Whether to enable verbose mode.
  */
@@ -144,12 +144,12 @@ function heading({ title, script, purpose }) {
  *
  * @param {ResultsOptions} opts - The results options.
  */
-function results({ tag, packageName, dryRun, verbose }) {
+function results({ tag, projectName, dryRun, verbose }) {
 	const lines = [
 		'┌' + '─'.repeat(WIDTH - 2) + '┐',
 		'│' + center() + '│',
 		'│' + center(chalk.gray('Version:') + ' ' + chalk.white(tag)) + '│',
-		'│' + center(chalk.gray('Package:') + ' ' + chalk.white(packageName)) + '│',
+		'│' + center(chalk.gray('Project:') + ' ' + chalk.white(projectName)) + '│',
 		'│' + center(chalk.gray('Dry Run:') + ' ' + chalk.white(dryRun ? 'Yes' : 'No')) + '│',
 		'│' +
 			center(chalk.gray('Verbose Mode:') + ' ' + chalk.white(verbose ? 'Enabled' : 'Disabled')) +

@@ -32,9 +32,9 @@ function getBranchProps(branch) {
 	};
 }
 
-async function run({ dryRun, verbose, specifier, packages }) {
-	if (packages.length === 0) {
-		error('No packages to be released.');
+async function run({ dryRun, verbose, specifier, projects }) {
+	if (projects.length === 0) {
+		error('No projects to be released.');
 		process.exit(1);
 	}
 
@@ -44,17 +44,17 @@ async function run({ dryRun, verbose, specifier, packages }) {
 		purpose: 'Automate versioning and changelog generation',
 	});
 
-	info(`Releasing package${packages.length > 1 ? 's' : ''}:\n\n\t${packages.join(',\v\r\t  ')}\n`);
+	info(`Releasing project${projects.length > 1 ? 's' : ''}:\n\n\t${projects.join(',\v\r\t  ')}\n`);
 
-	for (const packageName of packages) {
+	for (const projectName of projects) {
 		try {
-			info(`Searching tag information for ${packageName} package...`);
-			const tag = runCommand(`git tag --list "${packageName}@*" --sort=-creatordate | head -n 1`, {
+			info(`Searching tag information for ${projectName} project...`);
+			const tag = runCommand(`git tag --list "${projectName}@*" --sort=-creatordate | head -n 1`, {
 				silenceError: true,
 			});
 
 			if (!tag) {
-				warn(`No tags found for ${packageName}`);
+				warn(`No tags found for ${projectName}`);
 			} else {
 				info(`Using latest tag: "${tag}"`);
 			}
@@ -62,7 +62,7 @@ async function run({ dryRun, verbose, specifier, packages }) {
 			const { base, head, commits } = getBranchProps(tag);
 
 			if (!commits) {
-				warn(`No commits found. Skipping release for '${packageName}' package`);
+				warn(`No commits found. Skipping release for '${projectName}' project`);
 				continue;
 			}
 
@@ -72,7 +72,7 @@ async function run({ dryRun, verbose, specifier, packages }) {
 				dryRun,
 				verbose,
 				firstRelease: !tag,
-				projects: [packageName],
+				projects: [projectName],
 			};
 
 			const { projectsVersionData, workspaceVersion } = await releaseVersion({
@@ -89,9 +89,9 @@ async function run({ dryRun, verbose, specifier, packages }) {
 				gitTag: false,
 			});
 
-			if (!projectsVersionData[packageName]) {
+			if (!projectsVersionData[projectName]) {
 				throw new Error(
-					`Project "${packageName}" was not processed correctly by Nx releaseVersion.`
+					`Project "${projectName}" was not processed correctly by Nx releaseVersion.`
 				);
 			}
 
@@ -104,19 +104,19 @@ async function run({ dryRun, verbose, specifier, packages }) {
 				gitCommitArgs: '--no-verify',
 				gitTag: true,
 				gitPush: true,
-				gitCommitMessage: `chore(release): ${packageName} release changes`,
+				gitCommitMessage: `chore(release): ${projectName} release changes`,
 			});
 
-			if (!projectChangelogs[packageName]) {
+			if (!projectChangelogs[projectName]) {
 				throw new Error(
-					`Package "${packageName}" was not processed correctly by Nx releaseChangelog.`
+					`Project "${projectName}" was not processed correctly by Nx releaseChangelog.`
 				);
 			}
 
 			success('¡Documentation release completed successfully!');
 			results({
-				tag: projectChangelogs[packageName].releaseVersion.gitTag,
-				packageName,
+				tag: projectChangelogs[projectName].releaseVersion.gitTag,
+				projectName,
 				dryRun,
 				verbose,
 			});
@@ -146,8 +146,8 @@ const { argv } = yargs(hideBin(process.argv))
 		type: 'boolean',
 		default: false,
 	})
-	.option('packages', {
-		description: 'List of packages to be released',
+	.option('projects', {
+		description: 'List of projects to be released',
 		type: 'array',
 		default: [],
 	});

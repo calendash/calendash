@@ -15,22 +15,22 @@ async function run({ dryRun, tag, verbose }) {
 	});
 
 	const match = tag?.match(/^(.*?)@.*$/i);
-	const packageName = match?.[1];
+	const projectName = match?.[1];
 
-	if (!packageName) {
-		error(`Invalid tag name expression: ${tag} →`, `Expected pattern: <package>@<semver>`);
+	if (!projectName) {
+		error(`Invalid tag name expression: ${tag} →`, `Expected pattern: <project>@<semver>`);
 		process.exit(1);
 	}
 
-	info(`Searching latest tag information for ${packageName} package...`);
+	info(`Searching latest tag information for ${projectName} project...`);
 	const latestTag = dryRunCommand(
 		dryRun,
-		`git tag --list "${packageName}@*" --sort=-creatordate | head -n 1`,
+		`git tag --list "${projectName}@*" --sort=-creatordate | head -n 1`,
 		{ silenceError: true }
 	);
 
 	if (!latestTag) {
-		warn(`No tags found for ${packageName}`);
+		warn(`No tags found for ${projectName}`);
 	} else {
 		success(`Using latest tag: "${latestTag}"`);
 	}
@@ -39,21 +39,21 @@ async function run({ dryRun, tag, verbose }) {
 		const publishStatus = await releasePublish({
 			dryRun,
 			verbose,
-			projects: [packageName],
+			projects: [projectName],
 			firstRelease: !latestTag,
 			tag: 'latest',
 		});
 
-		const code = publishStatus?.[packageName]?.code ?? 1;
+		const code = publishStatus?.[projectName]?.code ?? 1;
 
 		if (code !== 0) {
-			throw Error(`NPM publish script failed for '${packageName}'`);
+			throw Error(`NPM publish script failed for '${projectName}'`);
 		}
 
 		success(`Version '${tag}' successfully published to NPM !!!`);
 		results({
 			tag,
-			packageName,
+			projectName,
 			dryRun,
 			verbose,
 		});

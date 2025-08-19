@@ -11,9 +11,9 @@ on:
         options:
           - core
           - affected
-      version-bump:
+      semver:
         type: choice
-        description: 'Select the version bump to perform.'
+        description: 'Select the semantic versioning bump to perform.'
         required: true
         default: 'patch'
         options:
@@ -98,8 +98,8 @@ jobs:
       - name: 'Execute custom Nx release script'
         run: |
           pnpm run release \
-            --specifier ${{ inputs.version-bump }} \
-            --packages ${{ needs.analyze-affected-libraries.outputs.affected-libraries }}
+            --specifier ${{ inputs.semver }} \
+            --projects ${{ needs.analyze-affected-libraries.outputs.affected-libraries }}
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
