@@ -18,6 +18,8 @@ export {
 } from './features/calendar';
 export { disable, type DisableOptions } from './middlewares';
 export type {
+	BaseCell,
+	NodeErrorConstructor,
 	Bound,
 	BuilderContext,
 	DateBounds,
