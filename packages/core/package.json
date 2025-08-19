@@ -1,8 +1,9 @@
 {
-  "name": "@calendash/core",
-  "version": "0.0.0",
-  "description": "Framework-agnostic JavaScript library that provides classes for customizable date and time components.",	"sideEffects": false,
-  "packageManager": "pnpm@10.13.1",
+	"name": "@calendash/core",
+	"version": "1.0.0",
+	"description": "Framework-agnostic JavaScript library that provides classes for customizable date and time components.",
+	"sideEffects": false,
+	"packageManager": "pnpm@10.13.1",
 	"publishConfig": {
 		"access": "public"
 	},
@@ -30,17 +31,17 @@
 			"default": "./dist/calendash.core.umd.js"
 		}
 	},
-  "scripts": {
+	"scripts": {
 		"clean": "nx run core:clean",
 		"test": "nx run core:test --verbose",
 		"lint": "nx run core:lint --verbose",
 		"build": "nx run core:build --verbose",
 		"prepack": "nx run core:prepack --verbose"
-  },
+	},
 	"devDependencies": {
 		"@calendash/config": "workspace:*"
 	},
-  "keywords": [
+	"keywords": [
 		"time",
 		"date",
 		"calendar",
@@ -51,8 +52,8 @@
 		"timepicker",
 		"date-time-picker",
 		"scheduler",
-  	"component",
-  	"customizable"
+		"component",
+		"customizable"
 	],
 	"repository": {
 		"type": "git",
@@ -63,10 +64,10 @@
 		"url": "https://github.com/calendash/calendash/issues"
 	},
 	"homepage": "https://github.com/calendash/calendash/packages/core#readme",
-  "author": {
+	"author": {
 		"email": "ruben.omh@proton.me",
 		"name": "rocmaz"
 	},
-  "license": "MIT",
+	"license": "MIT",
 	"private": false
 }
