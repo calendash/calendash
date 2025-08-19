@@ -2,7 +2,7 @@
 'use strict';
 
 import { fileURLToPath } from 'node:url';
-import { chalk, fs, path } from 'zx';
+import { chalk, fs, path, echo } from 'zx';
 
 async function validateExports(exports, rootPath) {
 	// Fetch misssing export files
