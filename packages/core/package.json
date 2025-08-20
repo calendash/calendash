@@ -63,7 +63,7 @@
 	"bugs": {
 		"url": "https://github.com/calendash/calendash/issues"
 	},
-	"homepage": "https://github.com/calendash/calendash/packages/core#readme",
+	"homepage": "https://github.com/calendash/calendash/tree/master/packages/core#readme",
 	"author": {
 		"email": "ruben.omh@proton.me",
 		"name": "rocmaz"
