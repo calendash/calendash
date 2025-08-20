@@ -1,9 +1,11 @@
 # Calendash
 
-[![build](https://img.shields.io/github/actions/workflow/status/calendash/calendash/ci.yml?style=flat-square)](https://github.com/calendash/calendash/actions/workflows/ci.yml)
+[![build](https://img.shields.io/github/actions/workflow/status/calendash/calendash/ci.yml?style=flat-square)](https://github.com/calendash/calendash/actions/workflows/ci.yml?query=workflow%3Aci)
 ![types](https://img.shields.io/npm/types/@calendash/core?style=flat-square)
-[![nx](https://img.shields.io/badge/monorepo-nx-143055?style=flat-square&logo=nx&logoColor=white)](https://nx.dev)
-[![license](https://img.shields.io/github/license/calendash/calendash?style=flat-square)](https://github.com/calendash/calendash/blob/master/LICENSE)
+[![chat](https://img.shields.io/badge/Join-Discord-5865F2?style=flat-square&logo=discord&logoColor=FFFFFF)](https://discord.gg/wz3kKbfg6X)
+[![Nx](https://img.shields.io/badge/monorepo-nx-143055?style=flat-square&logo=nx&logoColor=white)](https://nx.dev)
+[![License](https://img.shields.io/github/license/calendash/calendash?style=flat-square)](https://github.com/calendash/calendash/blob/master/LICENSE)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/calendash?label=Sponsor&logo=githubsponsors&style=flat-square)](https://github.com/sponsors/calendash)
 
 **@calendash/core** is a modular, framework-agnostic calendar engine that generates structured data for multiple views, with fine-grained control over navigation, behavior, and logic via a flexible middleware system.
 
