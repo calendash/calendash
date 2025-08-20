@@ -40,6 +40,14 @@ jobs:
       - name: 'Run tests for all packages'
         run: pnpm run test
         shell: bash
+
+      - name: 'Upload "core" coverage report to Codecov'
+        uses: codecov/codecov-action@v5
+        with:
+          flags: core
+          name: core-coverage
+          files: ./packages/core/coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
   
   build:
     name: 'Build packages'
