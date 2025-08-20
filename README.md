@@ -1,7 +1,11 @@
 # Calendash
 
-[![License](https://img.shields.io/github/license/calendash/calendash?style=flat-square)](https://github.com/calendash/calendash/blob/master/LICENSE)
-[![Monorepo: Nx](https://img.shields.io/badge/monorepo-nx-143055?style=flat-square&logo=nx&logoColor=white)](https://nx.dev)
+[![build](https://img.shields.io/github/actions/workflow/status/calendash/calendash/ci.yml?style=flat-square)](https://github.com/calendash/calendash/actions/workflows/ci.yml)
+![types](https://img.shields.io/npm/types/@calendash/core?style=flat-square)
+[![nx](https://img.shields.io/badge/monorepo-nx-143055?style=flat-square&logo=nx&logoColor=white)](https://nx.dev)
+[![license](https://img.shields.io/github/license/calendash/calendash?style=flat-square)](https://github.com/calendash/calendash/blob/master/LICENSE)
+
+**@calendash/core** is a modular, framework-agnostic calendar engine that generates structured data for multiple views, with fine-grained control over navigation, behavior, and logic via a flexible middleware system.
 
 ## Packages
 
